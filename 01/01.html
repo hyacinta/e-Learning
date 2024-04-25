@@ -43,11 +43,11 @@
             <p class="question__text">교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절하지 않은 것은?</p>
             <div class="question__resultMark">맞았습니다.</div>
           </div>
-          <ul class="quizPaper__example">
-            <li class="example__item">보기1</li>
-            <li class="example__item">보기2</li>
-            <li class="example__item">보기3</li>
-            <li class="example__item">보기4</li>
+          <ul class="quizPaper__additional">
+            <li class="additional__item">보기1</li>
+            <li class="additional__item">보기2</li>
+            <li class="additional__item">보기3</li>
+            <li class="additional__item">보기4</li>
           </ul>
           <ol class="quizPaper__distractor sa">
             <li class="distractor__item">
@@ -114,7 +114,62 @@
         </section>
       </main>
       <section class="controller">
-
+        <button type="button" class="controller__btnIndex">INDEX<span class="a11yHidden">창 열기</span></button>
+        <button type="button" class="controller__btnHelp"><span class="controller__bubble">학습도우미</span><span class="a11yHidden">창 열기</span></button>
+        <div class="controller__videoTime">
+          <p class="videoTime__total">
+            <span class="a11yHidden">영상 전체 시간</span>
+            <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
+            <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
+          </p>
+          <p class="videoTime__sec">
+            <span class="a11yHidden">현재 재생 시간</span>
+            <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
+            <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
+          </p>
+          <div class="videoTime__progress progress">
+            <div class="progress__bar"></div>
+          </div>
+        </div>
+        <button type="button" class="controller__btnPlay"><span class="controller__bubble">재생하기</span></button>
+        <button type="button" class="controller__btnReplay"><span class="controller__bubble">다시보기</span></button>
+        <div class="controller__volume">
+          <button type="button" class="controller__btnVolume"><span class="controller__bubble">소리끄기</span></button>
+          <div class="volume__progress">
+            <div class="progress__bar"></div>
+          </div>
+        </div>
+        <div class="controller__playRate">
+          <button type="button" class="controller__btnRateOpen"><span class="currentRate" aria-hidden="true">1.0</span><span class="controller__bubble">재생 속도 선택창 열기</span></button>
+          <ul class="playRate__list">
+            <li class="playRate__item">
+              <button type="button" class="plalyRate__btnChangeRate">0.9<span class="a11yHidden">배로 보기</span></button>
+            </li>
+            <li class="playRate__item">
+              <button type="button" class="plalyRate__btnChangeRate">1.0<span class="a11yHidden">배로 보기</span></button>
+            </li>
+            <li class="playRate__item">
+              <button type="button" class="plalyRate__btnChangeRate">1.2<span class="a11yHidden">배로 보기</span></button>
+            </li>
+            <li class="playRate__item">
+              <button type="button" class="plalyRate__btnChangeRate">1.5<span class="a11yHidden">배로 보기</span></button>
+            </li>
+            <li class="playRate__item">
+              <button type="button" class="plalyRate__btnChangeRate">1.7<span class="a11yHidden">배로 보기</span></button>
+            </li>
+            <li class="playRate__item">
+              <button type="button" class="plalyRate__btnChangeRate">2.0<span class="a11yHidden">배로 보기</span></button>
+            </li>
+          </ul>
+        </div>
+        <button type="button" class="controller__btnScript"><span class="controller__bubbl">스크립트</span><span class="a11yHidden">창 열기</span></button>
+        <button type="button" class="controller__btnFullscreen"><span class="controller__bubbl">전체화면</span><span class="a11yHidden">으로 보기</span></button>
+        <div class="controller__movePage">
+          <p class="movePage__total"><span class="a11yHidden">전체</span><span class="movePage__page">04</span><span class="a11yHidden">페이지</span></p>
+          <p class="movePage__current"><span class="a11yHidden">현재</span><span class="movePage__page">01</span><span class="a11yHidden">페이지</span></p>
+          <button type="button" class="controller__btnMovePrev"><span class="controller__bubble">이전 페이지로 이동하기</span></button>
+          <button type="button" class="controller__btnMoveNext"><span class="controller__bubble">다음 페이지로 이동하기</span></button>
+        </div>
       </section>
     </header>
   </div>
