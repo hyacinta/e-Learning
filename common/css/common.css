@@ -13,12 +13,12 @@
   --error: #ff4343;
   --success: #3864ff;
   --dimd: var(--blackOp6);
-  --btnDefault: var(--gray20);
-  --btnDisabled: var(--gray20);
-  --border: var(--gray20);
-  --divider: var(--gray20);
-  --inputBg: var(--gray20);
-  --popupBg: var(--gray20);
+  --btnDefault: var(--grayD0);
+  --btnDisabled: var(--grayE8);
+  --border: var(--grayCC);
+  --divider: var(--grayE0);
+  --inputBg: var(--grayF4);
+  --popupBg: var(--grayF8);
   --white: #fff;
   --black: #000;
 
@@ -34,9 +34,9 @@
   --textShadow08: 0.8rem 0.8rem 0;
   --boxShadow04: 0 0 0.4rem 0;
   --boxShadow08: 0 0 0.8rem 0;
-  --boxShadow012: 0 0 1.2rem 0;
-  --boxShadow016: 0 0 1.6rem 0;
-  --boxShadow024: 0 0 2.4rem 0;
+  --boxShadow12: 0 0 1.2rem 0;
+  --boxShadow16: 0 0 1.6rem 0;
+  --boxShadow24: 0 0 2.4rem 0;
 }
 
 body {
@@ -64,4 +64,26 @@ input::placeholder {
   border: 0;
   padding: 0;
   white-space: nowrap;
+}
+
+/* layout */
+.verticalCenter {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.position--center, .position--bottom, .position--contentsCenter, .position--contentsBottom {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+.position--center, .position--contentsCenter {
+  top: 0;
+}
+.position--center, .position--bottom {
+  bottom: 0;
+}
+.position--contentsCenter, .position--contentsBottom {
+  bottom: 5.6rem;
 }

@@ -57,9 +57,9 @@
   font-family: "Jalnan";
   font-style: normal;
   font-weight: 400;
-  src: local("./font/Jalnan");
-  src: url(./font/Jalnan.eot);
-  src: url(./font/Jalnan.eot?#iefix) format("embedded-opentype"),
-    url(./font/Jalnan.woff) format("woff"),
-    url(./font/Jalnan.ttf) format("truetype");
+  src: local("./Jalnan");
+  src: url(./Jalnan.eot);
+  src: url(./Jalnan.eot?#iefix) format("embedded-opentype"),
+    url(./Jalnan.woff) format("woff"),
+    url(./Jalnan.ttf) format("truetype");
 }

@@ -1,0 +1,205 @@
+/* common */
+.progress {
+  height: 0.8rem;
+  border-radius: 0.4rem;
+  background-color: var(--whiteOp2);
+  cursor: pointer;
+}
+.progress__bar {
+  position: relative;
+  width: 0;
+  height: 100%;
+  border-radius: 0.4rem;
+  background-color: var(--mainLight);
+}
+.controller [class*=__current] {
+  font-weight: 300;
+}
+.videoTime__sec::before {
+  content: ":";
+  margin: 0 0.2rem;
+}
+.controller > * {
+  position: relative;
+  margin: 0 0.4rem;
+}
+[class^=controller__btn] {
+  position: relative;
+  min-width: 4rem;
+  height: 4rem;
+  padding-top: 4rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+[class^=controller__btn]:hover, .controller [class*=__total] {
+  color: var(--mainLight);
+  overflow: visible;
+}
+.controller__bubble {
+  position: absolute;
+  bottom: -20rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.4rem;
+  color: var(--white);
+  background-color: var(--gray3C);
+  border-radius: 0.4rem;
+}
+[class^=controller__btn]:hover .controller__bubble, .controller__playRate.open .playRate__list {
+  bottom: 5.6rem;
+}
+.controller__bubble::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1.2rem;
+  left: 0;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-top: 0.8rem solid var(--gray3C);
+  border-right: 0.4rem solid transparent;
+  border-bottom: 0.4rem solid transparent;
+  border-left: 0.4rem solid transparent;
+}
+
+/* controller */
+.controller {
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.4rem calc((100% - 128rem) / 2);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--subDeep);
+}
+.controller__btnIndex {
+  padding-top: 0;
+  padding-left: 4rem;
+  background-image: url("../images/btn__index.png");
+  background-position-x: left;
+}
+.controller__btnIndex:hover {
+  background-image: url("../images/btn__index--hover.png");
+}
+.controller__btnHelp {
+  background-image: url("../images/btn__help.png");
+}
+.controller__btnHelp:hover {
+  background-image: url("../images/btn__help--hover.png");
+}
+.controller__videoTime {
+  flex-grow: 1;
+  font-size: 1.4rem;
+}
+.videoTime__progress {
+  width: 100%;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+.videoTime__progress .progress__bar::before {
+  content: "";
+  position: absolute;
+  top: -0.4rem;
+  right: -0.8rem;
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  background-color: var(--main);
+  border-radius: 0.8rem;
+  box-shadow: var(--boxShadow08) var(--blackOp9);
+}
+.videoTime__total {
+  order: 1;
+}
+.controller__btnPlay {
+  background-image: url("../images/btn__play.png");
+}
+.controller__btnPlay:hover {
+  background-image: url("../images/btn__play--hover.png");
+}
+.controller__btnPlay.pause {
+  background-image: url("../images/btn__pause.png");
+}
+.controller__btnPlay.pause:hover {
+  background-image: url("../images/btn__pause--hover.png");
+}
+.controller__btnReplay {
+  background-image: url("../images/btn__replay.png");
+}
+.controller__btnReplay:hover {
+  background-image: url("../images/btn__replay--hover.png");
+}
+.controller__btnVolume {
+  background-image: url("../images/btn__volume.png");
+}
+.controller__btnVolume:hover {
+  background-image: url("../images/btn__volume--hover.png");
+}
+.controller__btnVolume.mute {
+  background-image: url("../images/btn__mute.png");
+}
+.controller__btnVolume.mute:hover {
+  background-image: url("../images/btn__mute--hover.png");
+}
+.controller__btnRateOpen {
+  padding: 0 1rem 0 3rem;
+  background-image: url("../images/btn__rate.png");
+  background-position-x: left;
+}
+.controller__btnRateOpen:hover {
+  background-image: url("../images/btn__rate--hover.png");
+}
+.controller__btnRateOpen .controller__bubble {
+  width: 7.6rem;
+}
+.playRate__list {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0.6rem 0.8rem;
+}
+.plalyRate__btnChangeRate {
+  padding: 0.2rem 0.4rem 0.2rem 1.7rem;
+  font-size: 1.6rem;
+  background: url("../images/btn__changeRate.png") no-repeat left center;
+}
+.controller__btnScript {
+  background-image: url("../images/btn__script.png");
+}
+.controller__btnScript:hover {
+  background-image: url("../images/btn__script--hover.png");
+}
+.controller__btnFullscreen {
+  background-image: url("../images/btn__fullscreen.png");
+}
+.controller__btnFullscreen:hover {
+  background-image: url("../images/btn__fullscreen--hover.png");
+}
+.controller__btnMovePrev {
+  background-image: url("../images/btn__movePrev.png");
+}
+.controller__btnMovePrev:hover {
+  background-image: url("../images/btn__movePrev--hover.png");
+}
+.controller__btnMoveNext {
+  background-image: url("../images/btn__moveNext.png");
+}
+.controller__btnMoveNext:hover {
+  background-image: url("../images/btn__moveNext--hover.png");
+}
+.controller__btnMovePrev .controller__bubble, .controller__btnMoveNext .controller__bubble {
+  width: 15.2rem;
+}
+.controller__movePage::before, .movePage__total, .controller__btnMoveNext {
+  order: 1;
+}
+.controller__btnMovePrev {
+  order: -1;
+}
+.controller__movePage::before {
+  content: "";
+  width: 0.1rem;
+  height: 1.6rem;
+  margin: 0 1rem;
+  background-color: var(--whiteOp2);
+}
