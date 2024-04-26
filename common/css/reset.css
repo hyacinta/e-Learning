@@ -1,0 +1,158 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-smooth: always;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+html {
+  font-size: 10px;
+  word-break: keep-all;
+}
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+  font-size: inherit;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+ul, ol {
+  padding-left: 0;
+  list-style: none;
+  list-style-position: inside;
+}
+dd {
+  margin-left: 0;
+}
+button {
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
+a {
+  font-size: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+input::placeholder {
+  line-height: inherit;
+}
+input, textarea, option {
+  padding: 0;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+pre {
+  font-family: inherit;
+}
+fieldset {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  border: none;
+}
+legend {
+  padding-left: 0;
+  padding-right: 0;
+}
+blockquote, figure {
+  margin: 0;
+}
+address, dfn, em, i, cite {
+  font-style: normal;
+}
+
+:root {
+  /* base color */
+  --grayF8: #f8f8f8;
+  --grayF4: #f4f4f4;
+  --grayF0: #f0f0f0;
+  --grayEC: #ececec;
+  --grayE8: #e8e8e8;
+  --grayE4: #e4e4e4;
+  --grayE0: #e0e0e0;
+  --grayDC: #dcdcdc;
+  --grayD8: #d8d8d8;
+  --grayD4: #d4d4d4;
+  --grayD0: #d0d0d0;
+  --grayCC: #cccccc;
+  --grayC8: #c8c8c8;
+  --grayC4: #c4c4c4;
+  --grayC0: #c0c0c0;
+  --grayBC: #bcbcbc;
+  --grayB8: #b8b8b8;
+  --grayB0: #b0b0b0;
+  --grayA8: #a8a8a8;
+  --grayA0: #a0a0a0;
+  --gray98: #989898;
+  --gray90: #909090;
+  --gray88: #888888;
+  --gray80: #808080;
+  --gray78: #787878;
+  --gray70: #707070;
+  --gray68: #686868;
+  --gray60: #606060;
+  --gray58: #585858;
+  --gray50: #505050;
+  --gray48: #484848;
+  --gray44: #444444;
+  --gray40: #404040;
+  --gray3C: #3c3c3c;
+  --gray38: #383838;
+  --gray34: #343434;
+  --gray30: #303030;
+  --gray2C: #2c2c2c;
+  --gray28: #282828;
+  --gray24: #242424;
+  --gray20: #202020;
+  --gray1C: #1c1c1c;
+  --gray18: #181818;
+  --gray14: #141414;
+  --gray10: #101010;
+  --gray0C: #0c0c0c;
+  --gray08: #080808;
+
+  --blackOp1: rgba(0, 0, 0, .1);
+  --blackOp2: rgba(0, 0, 0, .2);
+  --blackOp3: rgba(0, 0, 0, .3);
+  --blackOp4: rgba(0, 0, 0, .4);
+  --blackOp5: rgba(0, 0, 0, .5);
+  --blackOp6: rgba(0, 0, 0, .6);
+  --blackOp7: rgba(0, 0, 0, .7);
+  --blackOp8: rgba(0, 0, 0, .8);
+  --blackOp9: rgba(0, 0, 0, .9);
+
+  --whiteOp1: rgba(255, 255, 255, .1);
+  --whiteOp2: rgba(255, 255, 255, .2);
+  --whiteOp3: rgba(255, 255, 255, .3);
+  --whiteOp4: rgba(255, 255, 255, .4);
+  --whiteOp5: rgba(255, 255, 255, .5);
+  --whiteOp6: rgba(255, 255, 255, .6);
+  --whiteOp7: rgba(255, 255, 255, .7);
+  --whiteOp8: rgba(255, 255, 255, .8);
+  --whiteOp9: rgba(255, 255, 255, .9);
+}

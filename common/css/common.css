@@ -1,0 +1,67 @@
+:root {
+  /* use color */
+  --main: #FBB02E;
+  --mainLight: #FEDF40;
+  --mainDeep: #F3600F;
+  --sub: #6F5831;
+  --subLight: #BCAA92;
+  --subDeep: #4A351A;
+  --point1: #E0FB2E;
+  --point2: #79FB2E;
+  --point3: #8833FF;
+  --point4: #FF3D57;
+  --error: #ff4343;
+  --success: #3864ff;
+  --dimd: var(--blackOp6);
+  --btnDefault: var(--gray20);
+  --btnDisabled: var(--gray20);
+  --border: var(--gray20);
+  --divider: var(--gray20);
+  --inputBg: var(--gray20);
+  --popupBg: var(--gray20);
+  --white: #fff;
+  --black: #000;
+
+  /* font */
+  --fontSp: "Jalnan";
+  --textPrimary: var(--gray20);
+  --textSecondary: var(--gray70);
+  --textDisabled: var(--grayb0);
+
+  /* etc */
+  --blur: blur(0.8rem);
+  --textShadow04: 0.4rem 0.4rem 0;
+  --textShadow08: 0.8rem 0.8rem 0;
+  --boxShadow04: 0 0 0.4rem 0;
+  --boxShadow08: 0 0 0.8rem 0;
+  --boxShadow012: 0 0 1.2rem 0;
+  --boxShadow016: 0 0 1.6rem 0;
+  --boxShadow024: 0 0 2.4rem 0;
+}
+
+body {
+  font-family: 'Pretendard';
+  font-size: 1.6rem;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  color: var(--textSecondary);
+}
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+input::placeholder {
+  font-weight: 400;
+  color: var(--textDisabled);
+}
+.a11yHidden {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  clip-path: circle(0);
+  width: 0.1rem;
+  height: 0.1rem;
+  margin: -0.1rem;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+}
