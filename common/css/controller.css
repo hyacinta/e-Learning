@@ -224,3 +224,61 @@
   margin: 0 1rem;
   background-color: var(--whiteOp2);
 }
+
+/* index */
+.controller__index {
+  position: absolute;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 2.4rem calc((100% - 128rem) / 2 );
+  background-color: var(--dimd);
+  backdrop-filter: var(--blur);
+}
+.index__list {
+  justify-content: space-between;
+}
+.index__item {
+  flex-grow: 1;
+  margin-right: 0.8rem;
+  padding: 0.8rem;
+  color: var(--textSecondary);
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 1.2rem;
+  border: 0.2rem solid var(--border);
+}
+.index__item:last-child {
+  margin-right: 0;
+}
+.index__item:hover, .index__item.active {
+  border-color: var(--point3);
+}
+.index__title {
+  width: 100%;
+  padding: 1.6rem;
+  font-family: var(--fontSp);
+  background-color: var(--btnDefault);
+  border-radius: 0.8rem;
+}
+.index__item:hover .index__title, .index__item.active .index__title {
+  color: var(--mainLight);
+  background-color: var(--point3);
+}
+.index__btnMovePage {
+  margin: 0 1.6rem;
+  padding: 1.6rem 2.4rem 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.index__btnMovePage:hover {
+  font-weight: 800;
+  color: var(--textPrimary);
+  text-decoration: underline;
+}
+.index__btnClosed {
+  top: 1.6rem;
+  right: 1.6rem;
+  width: 4rem;
+  height: 4rem;
+  padding-top: 4rem;
+}

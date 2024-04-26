@@ -53,6 +53,6 @@ body {
 
 
 /* 임시코드 숨기기 */
-.help, .controller__index {
+.help {
   display: none;
 }
