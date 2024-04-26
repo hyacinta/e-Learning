@@ -48,6 +48,13 @@
 [class^=controller__btn]:hover .controller__bubble, .controller__playRate.open .playRate__list {
   bottom: 5.6rem;
 }
+.controller__btnPlay .controller__bubble,
+.controller__btnReplay .controller__bubble,
+.controller__btnVolume .controller__bubble,
+.controller__btnScript .controller__bubble,
+.controller__btnFullscreen .controller__bubble {
+  left: -1.6rem;
+}
 .controller__bubble::after {
   content: "";
   position: absolute;
@@ -87,6 +94,9 @@
 }
 .controller__btnHelp:hover {
   background-image: url("../images/btn__help--hover.png");
+}
+.controller__btnHelp .controller__bubble {
+  left: -2.3rem;
 }
 .controller__videoTime {
   flex-grow: 1;
@@ -151,6 +161,7 @@
   background-image: url("../images/btn__rate--hover.png");
 }
 .controller__btnRateOpen .controller__bubble {
+  left: -0.5rem;
   width: 7.6rem;
 }
 .playRate__list {
@@ -189,6 +200,16 @@
 }
 .controller__btnMovePrev .controller__bubble, .controller__btnMoveNext .controller__bubble {
   width: 15.2rem;
+}
+.controller__btnMovePrev .controller__bubble {
+  left: -5.6rem;
+}
+.controller__btnMoveNext .controller__bubble {
+  right: 0;
+}
+.controller__btnMoveNext .controller__bubble::after {
+  left: unset;
+  right: 2rem;
 }
 .controller__movePage::before, .movePage__total, .controller__btnMoveNext {
   order: 1;
