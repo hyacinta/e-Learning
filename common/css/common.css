@@ -97,7 +97,8 @@ input::placeholder {
 }
 /* O, X모양 */
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
-.ox .distractor__btnSelect::before, .ox .distractor__btnSelect::after {
+.ox .distractor__btnSelect::before, .ox .distractor__btnSelect::after,
+.quizResult__resultBox::before, .quizResult__resultBox::after {
   content: "";
   position: absolute;
   top: 0;
@@ -108,14 +109,19 @@ input::placeholder {
 }
 /* X모양 */
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
-.ox .distractor__btnSelect.X::before, .ox .distractor__btnSelect.X::after {
+.ox .distractor__btnSelect.X::before, .ox .distractor__btnSelect.X::after,
+.X .quizResult__resultBox::before, .X .quizResult__resultBox::after {
   width: 95%;
   background-color: currentColor;
 }
-[class*="__btnClosed"]::before, .ox .distractor__btnSelect.X::before {
+[class*="__btnClosed"]::before,
+.ox .distractor__btnSelect.X::before,
+.X .quizResult__resultBox::before {
   transform: rotate(45deg);
 }
-[class*="__btnClosed"]::after, .ox .distractor__btnSelect.X::after {
+[class*="__btnClosed"]::after,
+.ox .distractor__btnSelect.X::after,
+.X .quizResult__resultBox::after {
   transform: rotate(-45deg);
 }
 /* closed btn */
@@ -124,7 +130,7 @@ input::placeholder {
   border-radius: 0.1rem;
 }
 /* O모양 */
-.ox .distractor__btnSelect.O::before {
+.ox .distractor__btnSelect.O::before, .O .quizResult__resultBox::before {
   width: 75%;
   height: 75%;
   border-radius: 50%;

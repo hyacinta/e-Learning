@@ -505,7 +505,71 @@ body {
   border-bottom-color: var(--main);
   box-shadow: 0 0 0.2rem 0 var(--blackOp5);
 }
+.quizResult {
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--white) url("../images/resultBg.png") no-repeat left bottom;
+}
+.quizResult__list {
+  padding-left: 32rem;
+  background: url("../images/resultTitle.png") no-repeat left center;
+}
+.quizResult__item {
+  margin: 0 0.8rem;
+  border: 0.4rem solid var(--main);
+  border-radius: 1.6rem;
+}
+.quizResult__quizNumber {
+  width: 100%;
+  height: 12rem;
+  padding-top: 12rem;
+  background-color: var(--main);
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+.quizResult__item:nth-child(1) .quizResult__quizNumber {
+  background-image: url("../images/resultQuiz1.png");
+}
+.quizResult__item:nth-child(2) .quizResult__quizNumber {
+  background-image: url("../images/resultQuiz2.png");
+}
+.quizResult__item:nth-child(3) .quizResult__quizNumber {
+  background-image: url("../images/resultQuiz3.png");
+}
+.quizResult__resultBox {
+  position: relative;
+  width: 17.6rem;
+  height: 17.6rem;
+  padding-top: 17.6rem;
+  color: var(--mainDeep);
+  overflow: hidden;
+}
+.O .quizResult__resultBox::before {
+  border-width: 0.8rem;
+}
+.X .quizResult__resultBox::before, .X .quizResult__resultBox::after {
+  height: 0.8rem;
+  border-radius: 0.4rem;
+}
+.quizResult__btnRetry {
+  margin-top: 4rem;
+  padding: 1rem 1.6rem;
+  font-family: var(--fontSp);
+  font-size: 2.4rem;
+  color: var(--textSecondary);
+  background-color: var(--btnDefault);
+  border-radius: 0.8rem;
+  border: 0.2rem solid transparent;
+}
+.quizResult__btnRetry:hover {
+  color: var(--mainLight);
+  background-color: var(--point3);
+  border-color: var(--main);
+}
 /* 임시코드 */
-.videoPage, .quizPaper__distractor.sa, .quizPaper__distractor.ox, .quizPaper__alertMessage {
+.videoPage, .quizPaper  {
   display: none;
 }
