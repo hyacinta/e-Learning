@@ -20,7 +20,7 @@
         <span class="lessonTitle__text">웹 접근성을 고려한 e-learning 영상 player 개발</span>
       </h2>
     </header>
-    <main class="contents">
+    <main class="contents position--center">
       <div class="contents__title">
         <h3 class="title__text">평가</h3>
         <p class="title__exp">이번 시간에 학습한 내용을 바탕으로 문제를 풀어보세요.</p>
@@ -197,19 +197,19 @@
         <button type="button" class="controller__btnMoveNext"><span class="controller__bubble">다음 페이지로 이동하기</span></button>
       </div>
     </section>
-    <section class="help">
+    <section class="help position--center">
       <h3 class="a11yHidden">학습도우미</h3>
       <nav class="help__nav">
         <ul class="nav__list">
           <li class="nav__item">
-            <button type="button" id="nav1" class="nav__btnChangeContents" data-help="keyControls" tabindex="0" role="tab" aria-selected="true" aria-controls="helpContent1">키보드 제어</button>
+            <button type="button" id="nav1" class="nav__btnChangeContents active" data-help="keyControls" tabindex="0" role="tab" aria-selected="true" aria-controls="helpContent1" disabled>키보드 제어</button>
           </li>
           <li class="nav__item">
             <button type="button" id="nav2" class="nav__btnChangeContents" data-help="pageView" tabindex="0" role="tab" aria-selected="false" aria-controls="helpContent2">화면 안내</button>
           </li>
         </ul>
       </nav>
-      <div class="help__contents">
+      <div class="help__contents verticalCenter">
         <section id="helpContent1" class="contents__innerBox keyControls" role="tabpanel" aria-labelledby="nav1">
           <kbd>SPACE BAR</kbd><p>영상 일시정지 / 재생하기</p>
           <kbd>PAGE UP</kbd><p>이전 페이지 이동하기</p>
@@ -258,6 +258,7 @@
           </div>
         </section>
       </div>
+      <button type="button" class="help__btnClosed" title="학습도우미">닫기</button>
     </section>
   </div>
 </body>

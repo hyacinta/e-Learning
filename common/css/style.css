@@ -10,7 +10,6 @@ body {
   height: 100%;
   background: url("../images/bg1.png") no-repeat left bottom,
               url("../images/bg2.png") no-repeat right top;
-  background-color: var(--grayF8);
 }
 /* header */
 .header {
@@ -44,15 +43,8 @@ body {
 }
 /* main */
 .contents {
-  width: 128rem;
-  height: 72rem;
+  width: var(--width);
+  height: var(--height);
   background-color: gray;
   overflow: hidden;
-}
-
-
-
-/* 임시코드 숨기기 */
-.help {
-  display: none;
 }
