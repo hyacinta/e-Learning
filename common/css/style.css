@@ -50,6 +50,11 @@ body {
   overflow: hidden;
 }
 /* contents title */
+.contents__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .title__label {
   margin-right: 0.8rem;
   padding: 0.3rem 1rem 0.3rem 1.2rem;
@@ -195,9 +200,312 @@ body {
   background-image: url("../images/btn__print--hover.png");
 }
 
+/* quizPaper */
+.quizPaper {
+  width: 100%;
+  height: 100%;
+  padding-top: 4.8rem;
+  background: url("../images/quizPaper__deco.png") no-repeat left bottom;
+}
+/* question */
+.quizPaper__question {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-height: 9.3rem;
+  margin-bottom: 4rem;
+  padding: 0 4rem 1.2rem 16.8rem;
+  font-weight: 500;
+  background-repeat: no-repeat;
+  background-position: 6rem bottom;
+}
+.question__oxExp {
+  margin-bottom: 0.8rem;
+  padding: 0.2rem 1.6rem 0.1rem 1.2rem;
+  color: var(--textPrimary);
+  background-color: var(--point2);
+  border-radius: 1.6rem;
+}
+.question__text {
+  font-size: 2.2rem;
+  color: var(--textPrimary);
+}
+.question__text em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--error);
+  text-decoration: underline;
+}
+.quizPaper__question::before, .quizPaper__question::after {
+  content: "";
+  position: absolute;
+}
+.quizPaper__question::before {
+  bottom: 0.4rem;
+  left: 12.8rem;
+  width: calc(100% - 16rem);
+  border-bottom: 0.2rem dashed var(--border);
+}
+.quizPaper__question::after {
+  right: 2.2rem;
+  bottom: 0.1rem;
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: var(--border);
+  transform: rotate(45deg);
+}
+.quiz1 .quizPaper__question {
+  background-image: url("../images/question1.png");
+}
+.question__resultMark {
+  position: absolute;
+  bottom: -0.2rem;
+  left: 6.4rem;
+  width: 8.8rem;
+  height: 8.8rem;
+  padding-top: 8.8rem;
+  overflow: hidden;
+}
+.quizPaper__additional {
+  justify-content: center;
+  margin: 0 3rem 4rem var(--quizPadLeft);
+  padding: 0.8rem 2.4rem 0.7rem;
+  color: var(--mainLight);
+  background-color: var(--subDeep);
+  border-radius: 0.4rem;
+}
+.additional__item::after {
+  content: ",";
+  display: inline-block;
+  margin-right: 1.2rem;
+}
+.additional__item:last-child:after {
+  content: "";
+  margin-right: 0;
+}
+/* 나의 답, 정답 label */
+.mySelect .btnSelect__chip::before {
+  content: "나의 답";
+}
+.correctAnswer .btnSelect__chip::before {
+  content: "정답";
+}
+.mySelect .btnSelect__chip::before,
+.correctAnswer .btnSelect__chip::before {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.3rem;
+  height: 2.8rem;
+  padding: 0.3rem 0.6rem 0.2rem;
+  font-family: var(--fontSp);
+  font-size: 1.2rem;
+  color: var(--white);
+  background-color: var(--mainDeep);
+}
+.sa .mySelect .btnSelect__chip::before,
+.sa .correctAnswer .btnSelect__chip::before {
+  top: 0;
+  left: -5.2rem;
+  border-radius: 0.4rem 0 0 0.4rem;
+  border-right: 0.1rem solid var(--mainLight);
+} 
+.ox .mySelect .btnSelect__chip::before,
+.ox .correctAnswer .btnSelect__chip::before {
+  top: -3.2rem;
+  left: -0.4rem;
+  border-radius: 0.4rem 0.4rem 0 0;
+  border-bottom: 0.1rem solid var(--mainLight);
+} 
+
+/* 사지선다 */
+.sa .distractor__btnSelect {
+  position: relative;
+  margin-bottom: 1.2rem;
+  margin-left: var(--quizPadLeft);
+  font-size: 1.8rem;
+}
+.sa .distractor__btnSelect:hover,
+.sa .distractor__btnSelect.mySelect, 
+.sa .distractor__btnSelect.correctAnswer {
+  font-weight: 500;
+  color: var(--subDeep);
+}
+.sa .distractor__number {
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: 0.8rem;
+  padding-top: 0.5rem;
+  font-family: var(--fontSp);
+  font-size: 1.8rem;
+  color: var(--textSecondary);
+  border-radius: 0.4rem;
+  background-color: var(--btnDefault);
+}
+.sa .distractor__btnSelect.mySelect .distractor__number,
+.sa .distractor__btnSelect.correctAnswer .distractor__number {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.sa .distractor__btnSelect:hover .distractor__number,
+.sa .distractor__btnSelect.mySelect .distractor__number,
+.sa .distractor__btnSelect.correctAnswer .distractor__number {
+  color: var(--white);
+  background-color: var(--main);
+}
 
 
+/* OX */
+.ox.quizPaper__distractor {
+  justify-content: center;
+  width: 100%;
+}
+.ox .distractor__btnSelect {
+  position: relative;
+  width: 17.6rem;
+  height: 17.6rem;
+  margin: 0 2.4rem;
+  padding-top: 17.6rem;
+  color: var(--textSecondary);
+  background-color: var(--btnDefault);
+  border-radius: 1.6rem;
+  box-shadow: var(--boxShadow08) var(--blackOp2);
+  border: 0.4rem solid transparent;
+}
+.ox .distractor__btnSelect.X::before, .ox .distractor__btnSelect.X::after {
+  height: 0.8rem;
+  border-radius: 0.4rem;
+}
+.ox .distractor__btnSelect.O::before {
+  border-width: 0.8rem;
+}
+.ox .distractor__btnSelect:hover {
+  color: var(--mainDeep);
+  background-color: var(--white);
+  border-color: var(--main);
+  box-shadow: var(--boxShadow04) var(--blackOp5);
+}
+.distractor__btnSelect.mySelect, .distractor__btnSelect.correctAnswer {
+  border-top-left-radius: 0;
+}
+/* ju */
+.ju.quizPaper__distractor {
+  display: flex;
+  flex-direction: column;
+}
+.distractor__input {
+  width: 40rem;
+  margin: auto;
+  padding: 1.2rem 1.6rem;
+  font-size: 2.4rem;
+  color: var(--textPrimary);
+  text-align: center;
+  border: 0.4rem solid var(--main);
+  border-radius: 0.8rem;
+}
+
+.distractor__btnConfirm {
+  margin-top: 2.4rem;
+}
+/* alert message */
+.quizPaper__alertMessage {
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dimd);
+  backdrop-filter: var(--blur);
+}
+.alertMessage__textBox {
+  position: relative;
+  justify-content: center;
+  width: 48rem;
+  height: 48rem;
+  font-family: var(--fontSp);
+  font-size: 6rem;
+  color: var(--point3);
+  text-align: center;
+  border-radius: 24rem;
+  background: var(--main) url("../images/alertBg.png") no-repeat center;
+  box-shadow: var(--boxShadow12) var(--blackOp3);
+  overflow: hidden;
+}
+.alertMessage__textBox::before {
+  content: "";
+  position: absolute;
+  width: 96%;
+  height: 96%;
+  border: 0.2rem dashed var(--point3);
+  border-radius: 50%;
+}
+.quizPaper__answerSheet {
+  position: absolute;
+  padding: 2.4rem 4rem 6.4rem var(--quizPadLeft);
+  color: var(--white);
+  background: var(--point3) url("../images/answerBg.png") no-repeat left bottom;
+}
+.quizPaper__answerSheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 1.6rem);
+  height: calc(100% - 1.6rem);
+  margin: auto;
+  border: 0.2rem dashed var(--main);
+  border-radius: 0.4rem;
+}
+.answerSheet__correct {
+  margin-bottom: 0.8rem;
+}
+.correct__text {
+  padding-top: 0.2rem;
+  font-family: var(--fontSp);
+  font-size: 2.2rem;
+  color: var(--mainLight);
+}
+.answerSheet__label {
+  margin-right: 1.2rem;
+  padding: 0.2rem 1rem;
+  font-family: var(--fontSp);
+  font-size: 2rem;
+  color: var(--white);
+  background-color: var(--main);
+  border-radius: 0.4rem;
+}
+.exp__text {
+  padding-top: 0.1rem;
+  font-size: 1.8rem;
+}
+.answerSheet__btnNextStep {
+  position: absolute;
+  top: -3.9rem;
+  right: 0.8rem;
+  padding: 1rem 1.6rem;
+  font-family: var(--fontSp);
+  font-size: 2.4rem;
+  color: var(--textSecondary);
+  background-color: var(--btnDefault);
+  border-width: 0.2rem;
+  border-style: solid solid dashed solid;
+  border-color: var(--white) var(--white) var(--point3) var(--white);
+  border-radius: 0.8rem 0.8rem 0 0;
+  box-shadow: 0 -0.1rem 0.4rem 0 var(--blackOp2);
+}
+.answerSheet__btnNextStep:hover {
+  color: var(--mainLight);
+  background-color: var(--point3);
+  border-bottom-style: solid;
+  border-bottom-color: var(--main);
+  box-shadow: 0 0 0.2rem 0 var(--blackOp5);
+}
 /* 임시코드 */
-.videoPage {
+.videoPage, .quizPaper__distractor.sa, .quizPaper__distractor.ox, .quizPaper__alertMessage {
   display: none;
 }

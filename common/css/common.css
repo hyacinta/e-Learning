@@ -13,7 +13,7 @@
   --error: #ff4343;
   --success: #3864ff;
   --dimd: var(--blackOp6);
-  --btnDefault: var(--grayD0);
+  --btnDefault: var(--grayDC);
   --btnDisabled: var(--grayE8);
   --border: var(--grayCC);
   --divider: var(--grayE0);
@@ -39,6 +39,7 @@
   --boxShadow12: 0 0 1.2rem 0;
   --boxShadow16: 0 0 1.6rem 0;
   --boxShadow24: 0 0 2.4rem 0;
+  --quizPadLeft: 16.8rem;
 }
 
 body {
@@ -89,26 +90,44 @@ input::placeholder {
 .position--contentsCenter, .position--contentsBottom {
   bottom: 4.8rem;
 }
+/* 닫기 버튼 */
 [class*="__btnClosed"] {
   position: absolute;
   overflow: hidden;
 }
-[class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
+/* O, X모양 */
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
+.ox .distractor__btnSelect::before, .ox .distractor__btnSelect::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 0.2rem;
   margin: auto;
-  background-color: currentColor;
-  border-radius: 0.1rem;
 }
-[class*="__btnClosed"]::before {
+/* X모양 */
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
+.ox .distractor__btnSelect.X::before, .ox .distractor__btnSelect.X::after {
+  width: 95%;
+  background-color: currentColor;
+}
+[class*="__btnClosed"]::before, .ox .distractor__btnSelect.X::before {
   transform: rotate(45deg);
 }
-[class*="__btnClosed"]::after {
+[class*="__btnClosed"]::after, .ox .distractor__btnSelect.X::after {
   transform: rotate(-45deg);
+}
+/* closed btn */
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
+  height: 0.2rem;
+  border-radius: 0.1rem;
+}
+/* O모양 */
+.ox .distractor__btnSelect.O::before {
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: currentColor;
 }

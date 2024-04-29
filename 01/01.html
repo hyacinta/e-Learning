@@ -43,14 +43,14 @@
           <button type="button" class="videoPage__btnPrint verticalCenter" title="1차시 학습자료">PRINT</button>
         </div>
       </section>
-      <section class="quizPaper">
+      <section class="quizPaper quiz1">
         <h4 class="a11yHidden">1번 문제</h4>
         <div class="quizPaper__question">
           <p class="question__oxExp">아래의 설명을 읽고 O, X를 선택하세요.</p>
-          <p class="question__text">교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절하지 않은 것은?</p>
+          <p class="question__text">교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절 하지 <em>않은</em> 것은? 교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절 하지 <em>않은</em> 것은? 교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절 하지 <em>않은</em> 것은?</p>
           <div class="question__resultMark">맞았습니다.</div>
         </div>
-        <ul class="quizPaper__additional">
+        <ul class="quizPaper__additional verticalCenter">
           <li class="additional__item">보기1</li>
           <li class="additional__item">보기2</li>
           <li class="additional__item">보기3</li>
@@ -58,48 +58,62 @@
         </ul>
         <ol class="quizPaper__distractor sa">
           <li class="distractor__item">
-            <button class="distractor__btnSelect" data-select="1">
-              <span class="distractor__number">1</span><span class="a11yHidden">번</span> 보기 1번 선택지 입니다.
+            <button class="distractor__btnSelect mySelect verticalCenter" data-select="1">
+              <span class="btnSelect__chip"></span>
+              <span class="distractor__number">1</span>
+              <span class="a11yHidden">번</span> 보기 1번 선택지 입니다.
             </button>
           </li>
           <li class="distractor__item">
-            <button class="distractor__btnSelect" data-select="2">
-              <span class="distractor__number">2</span><span class="a11yHidden">번</span> 보기 2번 선택지 입니다.
+            <button class="distractor__btnSelect correctAnswer verticalCenter" data-select="2">
+              <span class="btnSelect__chip"></span>
+              <span class="distractor__number">2</span>
+              <span class="a11yHidden">번</span> 보기 2번 선택지 입니다.
             </button>
           </li>
           <li class="distractor__item">
-            <button class="distractor__btnSelect" data-select="3">
-              <span class="distractor__number">3</span><span class="a11yHidden">번</span> 보기 3번 선택지 입니다.
+            <button class="distractor__btnSelect verticalCenter" data-select="3">
+              <span class="btnSelect__chip"></span>
+              <span class="distractor__number">3</span>
+              <span class="a11yHidden">번</span> 보기 3번 선택지 입니다.
             </button>
           </li>
           <li class="distractor__item">
-            <button class="distractor__btnSelect" data-select="4">
-              <span class="distractor__number">4</span><span class="a11yHidden">번</span> 보기 4번 선택지 입니다.
+            <button class="distractor__btnSelect verticalCenter" data-select="4">
+              <span class="btnSelect__chip"></span>
+              <span class="distractor__number">4</span>
+              <span class="a11yHidden">번</span> 보기 4번 선택지 입니다.
             </button>
           </li>
         </ol>
-        <ul class="quizPaper__distractor ox">
+        <ul class="quizPaper__distractor ox verticalCenter">
           <li class="distractor__item">
-            <button class="distractor__btnSelect O" data-select="O">맞습니다.</button>
+            <button class="distractor__btnSelect O mySelect" data-select="O">
+              <span class="btnSelect__chip"></span>
+              <span class="a11yHidden">맞습니다.</span>
+            </button>
           </li>
           <li class="distractor__item">
-            <button class="distractor__btnSelect X" data-select="X">틀립니다.</button>
+            <button class="distractor__btnSelect X" data-select="X">
+              <span class="btnSelect__chip"></span>
+              <span class="a11yHidden">틀립니다.</span>
+            </button>
           </li>
         </ul>
         <div class="quizPaper__distractor ju">
-          <input type="text" class="distractor__input">
+          <input type="text" class="distractor__input" placeholder="정답을 입력하세요.">
           <button class="distractor__btnConfirm">정답 확인</button>
         </div>
-        <div class="quizPaper__alertMessage">
-          <p class="alertMessage__textBox">다시 한 번 풀어보세요.</p>
+        <div class="quizPaper__alertMessage position--center verticalCenter">
+          <p class="alertMessage__textBox verticalCenter">다시 한 번 풀어보세요.</p>
         </div>
-        <section class="quizPaper__answerSheet">
-          <div class="answerSheet__correct">
+        <section class="quizPaper__answerSheet position--bottom">
+          <div class="answerSheet__correct verticalCenter">
             <p class="answerSheet__label">정답</p>
             <p class="correct__text">4</p>
           </div>
-          <div class="answerSheet__exp">
-            <p class="answerSheet__label">정답</p>
+          <div class="answerSheet__exp verticalCenter">
+            <p class="answerSheet__label">해설</p>
             <p class="exp__text">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</p>
           </div>
           <button type="button" class="answerSheet__btnNextStep">다음 문제<span class="a11yHidden">풀기</span></button>

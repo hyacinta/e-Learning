@@ -362,7 +362,7 @@
   font-size: 1.8rem;
   color: var(--textSecondary);
   background-color: var(--btnDefault);
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   text-align: center;
 }
 [class*=pageView__btnNumber]:hover {
