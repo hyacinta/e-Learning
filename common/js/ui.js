@@ -1,9 +1,9 @@
-const headerUI = () => `<header class="header vrtCenter">
-<h1 class="header__course">front-end Developer 귤양의 개발로그</h1>
+const headerUI = ({ id, title }) => `<header class="header vrtCenter">
+<h1 class="header__course">${course}</h1>
 <h2 class="header__lessonTitle vrtCenter">
-  <span class="lessonTitle__number">1</span>
+  <span class="lessonTitle__number">${id}</span>
   <span class="a11yHidden">차시</span>
-  <span class="lessonTitle__text">웹 접근성을 고려한 e-learning 영상 player 개발</span>
+  <span class="lessonTitle__text">${title}</span>
 </h2>
 </header>`;
 const contentsUI = () => `<main class="contents pos--center"></main>`;
