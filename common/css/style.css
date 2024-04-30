@@ -603,7 +603,7 @@ body {
 }
 [class*=pageView__imgBox] {
   position: absolute;
-  /* display: none; */
+  display: none;
   background-repeat: no-repeat;
   overflow: hidden;
 }
@@ -722,18 +722,6 @@ body {
   padding-top: 7.3rem;
   background-image: url("../images/pageView__img9.png");
 }
-
-
-
-
-
-
-
-
-
-
-
-
 .help__btnClosed {
   top: 1.6rem;
   right: 1.6rem;
@@ -743,9 +731,4 @@ body {
 }
 .help__btnClosed:hover {
   color: var(--point3);
-}
-
-/* 임시코드 */
-.videoPage, .quizResult {
-  display: none;
 }

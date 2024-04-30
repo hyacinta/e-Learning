@@ -158,7 +158,6 @@ input::placeholder {
   border-radius: 0.4rem;
 }
 
-
 /* btn */
 .answerSheet__btnNextStep, .quizResult__btnRetry, .nav__btnChangeContents {
   padding: 1rem 1.6rem;
