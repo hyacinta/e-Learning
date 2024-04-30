@@ -1,25 +1,5 @@
 /* common */
-.progress {
-  height: 0.8rem;
-  border-radius: 0.4rem;
-  background-color: var(--whiteOp2);
-  cursor: pointer;
-}
-.progress__bar {
-  position: relative;
-  width: 0;
-  height: 100%;
-  border-radius: 0.4rem;
-  background-color: var(--mainLight);
-}
-.controller [class*=__current] {
-  font-weight: 300;
-}
-.videoTime__sec::before {
-  content: ":";
-  margin: 0 0.2rem;
-}
-.controller > * {
+.controller > *:not(.controller__index) {
   position: relative;
   margin: 0 0.4rem;
 }
@@ -32,30 +12,41 @@
   background-position: center;
   overflow: hidden;
 }
-[class^=controller__btn]:hover, .controller [class*=__total] {
-  color: var(--mainLight);
+[class^=controller__btn]:hover, .plalyRate__btnChangeRate:hover {
+  color: var(--controllerPoint);
   overflow: visible;
+}
+.controller [class*=__total] {
+  color: var(--controllerPoint);
+}
+.controller [class*=__current] {
+  font-weight: 200;
+}
+.progress {
+  height: 0.8rem;
+  border-radius: 0.4rem;
+  background-color: var(--whiteOp2);
+  cursor: pointer;
+}
+.progress__bar {
+  position: relative;
+  width: 0;
+  height: 100%;
+  border-radius: 0.4rem;
+  background-color: var(--controllerPoint);
 }
 .controller__bubble {
   position: absolute;
-  bottom: -20rem;
+  bottom: 5.6rem;
+  left: -1.6rem;
   padding: 0.6rem 1.2rem;
   font-size: 1.4rem;
   color: var(--white);
   background-color: var(--gray3C);
   border-radius: 0.4rem;
 }
-[class^=controller__btn]:hover .controller__bubble, .controller__playRate.open .playRate__list {
-  bottom: 5.6rem;
-}
-.controller__btnPlay .controller__bubble,
-.controller__btnReplay .controller__bubble,
-.controller__btnVolume .controller__bubble,
-.controller__btnScript .controller__bubble,
-.controller__btnFullscreen .controller__bubble {
-  left: -1.6rem;
-}
-.controller__bubble::after {
+.controller__bubble::after,
+.controller__playRate.open .playRate__list::after {
   content: "";
   position: absolute;
   right: 0;
@@ -69,12 +60,10 @@
   border-bottom: 0.4rem solid transparent;
   border-left: 0.4rem solid transparent;
 }
-
 /* controller */
 .controller {
   justify-content: space-between;
-  width: 100%;
-  padding: 0.8rem calc((100% - 128rem) / 2);
+  padding: 0.8rem calc((100% - var(--width)) / 2);
   font-size: 2rem;
   font-weight: 500;
   color: var(--white);
@@ -102,6 +91,13 @@
   flex-grow: 1;
   font-size: 1.4rem;
 }
+.videoTime__total {
+  order: 1;
+}
+.videoTime__sec::before {
+  content: ":";
+  margin: 0 0.2rem;
+}
 .videoTime__progress {
   width: 100%;
   margin-right: 1rem;
@@ -112,15 +108,11 @@
   position: absolute;
   top: -0.4rem;
   right: -0.8rem;
-  display: block;
   width: 1.6rem;
   height: 1.6rem;
   background-color: var(--main);
   border-radius: 0.8rem;
   box-shadow: var(--boxShadow08) var(--blackOp9);
-}
-.videoTime__total {
-  order: 1;
 }
 .controller__btnPlay {
   background-image: url("../images/btn__play.png");
@@ -152,6 +144,10 @@
 .controller__btnVolume.mute:hover {
   background-image: url("../images/btn__mute--hover.png");
 }
+.volume__progress {
+  width: 4rem;
+  overflow: hidden;
+}
 .controller__btnRateOpen {
   padding: 0 1rem 0 3rem;
   background-image: url("../images/btn__rate.png");
@@ -165,14 +161,21 @@
   width: 7.6rem;
 }
 .playRate__list {
-  display: flex;
+  display: none;
+  left: unset;
   flex-direction: column-reverse;
   padding: 0.6rem 0.8rem;
+}
+.open .playRate__list {
+  display: flex;
 }
 .plalyRate__btnChangeRate {
   padding: 0.2rem 0.4rem 0.2rem 1.7rem;
   font-size: 1.6rem;
   background: url("../images/btn__changeRate.png") no-repeat left center;
+}
+.plalyRate__btnChangeRate:hover {
+  background-image: url("../images/btn__changeRate--hover.png");
 }
 .controller__btnScript {
   background-image: url("../images/btn__script.png");
@@ -186,36 +189,22 @@
 .controller__btnFullscreen:hover {
   background-image: url("../images/btn__fullscreen--hover.png");
 }
+.movePage__total, .controller__movePage::before, .controller__btnMoveNext {
+  order: 1;
+}
 .controller__btnMovePrev {
+  order: -1;
   background-image: url("../images/btn__movePrev.png");
 }
 .controller__btnMovePrev:hover {
   background-image: url("../images/btn__movePrev--hover.png");
 }
-.controller__btnMoveNext {
-  background-image: url("../images/btn__moveNext.png");
-}
-.controller__btnMoveNext:hover {
-  background-image: url("../images/btn__moveNext--hover.png");
-}
-.controller__btnMovePrev .controller__bubble, .controller__btnMoveNext .controller__bubble {
+.controller__btnMovePrev .controller__bubble,
+.controller__btnMoveNext .controller__bubble {
   width: 15.2rem;
 }
 .controller__btnMovePrev .controller__bubble {
   left: -5.6rem;
-}
-.controller__btnMoveNext .controller__bubble {
-  right: 0;
-}
-.controller__btnMoveNext .controller__bubble::after {
-  left: unset;
-  right: 2rem;
-}
-.controller__movePage::before, .movePage__total, .controller__btnMoveNext {
-  order: 1;
-}
-.controller__btnMovePrev {
-  order: -1;
 }
 .controller__movePage::before {
   content: "";
@@ -224,14 +213,26 @@
   margin: 0 1rem;
   background-color: var(--whiteOp2);
 }
+.controller__btnMoveNext {
+  background-image: url("../images/btn__moveNext.png");
+}
+.controller__btnMoveNext:hover {
+  background-image: url("../images/btn__moveNext--hover.png");
+}
+.controller__btnMoveNext .controller__bubble {
+  left: unset;
+  right: 0;
+}
+.controller__btnMoveNext .controller__bubble::after {
+  left: unset;
+  right: 2rem;
+}
 
 /* index */
 .controller__index {
   position: absolute;
   display: none;
-  margin-right: 0;
-  margin-left: 0;
-  padding: 2.4rem calc((100% - 128rem) / 2 );
+  padding: 2.4rem calc((100% - var(--width)) / 2 );
   background-color: var(--dimd);
   backdrop-filter: var(--blur);
 }
@@ -243,39 +244,34 @@
 }
 .index__item {
   flex-grow: 1;
-  margin-right: 0.8rem;
+  margin: 0 0.8rem;
   padding: 0.8rem;
   color: var(--textSecondary);
   text-align: center;
   background-color: var(--white);
-  border-radius: 1.2rem;
   border: 0.2rem solid var(--border);
-}
-.index__item:last-child {
-  margin-right: 0;
-}
-.index__item:hover, .index__item.active {
-  border-color: var(--point3);
+  border-radius: 1.2rem;
 }
 .index__title {
-  width: 100%;
   padding: 1.6rem;
   font-family: var(--fontSp);
+  font-size: 2.2rem;
   background-color: var(--btnDefault);
-  border-radius: 0.8rem;
-}
-.index__item:hover .index__title, .index__item.active .index__title {
-  color: var(--mainLight);
-  background-color: var(--point3);
+  border-radius: 0.6rem;
 }
 .index__btnMovePage {
   margin: 0 1.6rem;
   padding: 1.6rem 2.4rem 1.2rem;
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 700;
+}
+.index__item:hover, .index__item.active {
+  border-color: var(--point3);
+}
+.index__item:hover .index__title, .index__item.active .index__title {
+  color: var(--controllerPoint);
+  background-color: var(--point3);
 }
 .index__btnMovePage:hover {
-  font-weight: 800;
   color: var(--textPrimary);
   text-decoration: underline;
 }
@@ -285,218 +281,8 @@
   width: 4rem;
   height: 4rem;
   padding-top: 4rem;
+  color: var(--whiteOp3);
 }
 .index__btnClosed:hover {
-  color: var(--point1);
-}
-
-.help {
-  display: none;
-  flex-direction: column;
-  width: var(--width);
-  height: var(--height);
-  background-color: var(--white);
-  overflow: hidden;
-}
-.help.open {
-  display: flex;
-}
-.help__nav {
-  padding: 4rem 1.6rem 0;
-  background-color: var(--inputBg);
-}
-.nav__list {
-  display: flex;
-}
-.nav__btnChangeContents {
-  min-width: 20rem;
-  margin-right: 0.8rem;
-  padding: 1.4rem 2.4rem 1rem;
-  font-family: var(--fontSp);
-  font-size: 2.8rem;
-  color: var(--textSecondary);
-  background-color: var(--btnDefault);
-  border-radius: 1.2rem 1.2rem 0 0;
-  border-bottom: 0.2rem dotted transparent;
-  box-shadow: inset 0 -0.6rem 0.5rem 0 var(--blackOp1);
-}
-.nav__btnChangeContents:hover {
-  border-bottom: 0.2rem dotted var(--mainLight);
-}
-.nav__btnChangeContents.active, .nav__btnChangeContents:hover {
-  color: var(--mainLight);
-  background-color: var(--point3);
-}
-.nav__btnChangeContents.active {
-  box-shadow: none;
-}
-.help__contents {
-  flex-grow: 1;
-  justify-content: center;
-  border: 0.4rem solid var(--point3)
-}
-.contents__innerBox {
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.contents__innerBox.keyControls {
-  display: none;
-  width: 102.7rem;
-  height: 34.7rem;
-  padding-top: 34.7rem;
-  background-image: url("../images/keyControl.png");
-  overflow: hidden;
-}
-.contents__innerBox.pageView {
-  position: relative;
-  width: 74rem;
-  height: 48rem;
-  background-image: url("../images/pageView.png");
-}
-[class*=pageView__btnNumber] {
-  position: absolute;
-  width: 2.8rem;
-  height: 2.8rem;
-  padding-top: 0.1rem;
-  font-family: var(--fontSp);
-  font-size: 1.8rem;
-  color: var(--textSecondary);
-  background-color: var(--btnDefault);
-  border-radius: 0.4rem;
-  text-align: center;
-}
-[class*=pageView__btnNumber]:hover {
-  color: var(--point1);
-  background-color: var(--point4);
-}
-[class*=pageView__imgBox] {
-  position: absolute;
-  display: none;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-[class*=pageView__btnNumber]:hover + [class*=pageView__imgBox] {
-  display: block;
-}
-.pageView__btnNumber1 {
-  top: 0;
-  left: -3.2rem;
-}
-.pageView__imgBox1 {
-  top: 0.4rem;
-  left: 0.1rem;
-  width: 25.2rem;
-  height: 5.4rem;
-  padding-top: 5.4rem;
-  background-image: url("../images/pageView__img1.png");
-}
-.pageView__btnNumber2 {
-  top: 0;
-  right: -3.2rem;
-}
-.pageView__imgBox2 {
-  top: 0;
-  right: 0.1rem;
-  width: 10.2rem;
-  height: 5.8rem;
-  padding-top: 5.8rem;
-  background-image: url("../images/pageView__img2.png");
-}
-.pageView__btnNumber3 {
-  top: 9.2rem;
-  right: -3.2rem;
-}
-.pageView__imgBox3 {
-  top: 6.2rem;
-  right: 10rem;
-  width: 20.8rem;
-  height: 9.7rem;
-  padding-top: 9.7rem;
-  background-image: url("../images/pageView__img3.png");
-}
-.pageView__btnNumber4 {
-  right: -3.2rem;
-  bottom: 11.2rem;
-}
-.pageView__imgBox4 {
-  right: 3rem;
-  bottom: 10rem;
-  width: 21.5rem;
-  height: 9.3rem;
-  padding-top: 9.3rem;
-  background-image: url("../images/pageView__img4.png");
-}
-.pageView__btnNumber5 {
-  left: -3.2rem;
-  bottom: 0;
-}
-.pageView__imgBox5 {
-  left: 0.1rem;
-  bottom: 0.1rem;
-  width: 73.8rem;
-  height: 15.1rem;
-  padding-top: 15.1rem;
-  background-image: url("../images/pageView__img5.png");
-}
-.pageView__btnNumber6 {
-  left: 8.8rem;
-  bottom: -3.2rem;
-}
-.pageView__imgBox6 {
-  left: 9.2rem;
-  bottom: 0.1rem;
-  width: 38rem;
-  height: 5.3rem;
-  padding-top: 5.3rem;
-  background-image: url("../images/pageView__img6.png");
-}
-.pageView__btnNumber7 {
-  right: 0;
-  bottom: -3.2rem;
-  left: 0;
-  margin: auto;
-} 
-.pageView__imgBox7 {
-  right: 0.1rem;
-  bottom: 0.1rem;
-  left: 0;
-  width: 54.3rem;
-  height: 7.3rem;
-  margin: auto;
-  padding-top: 7.3rem;
-  background-image: url("../images/pageView__img7.png");
-}
-.pageView__btnNumber8 {
-  right: 9rem;
-  bottom: -3.2rem;
-} 
-.pageView__imgBox8 {
-  right: 9.2rem;
-  bottom: 0.1rem;
-  width: 22.8rem;
-  height: 5.3rem;
-  padding-top: 5.3rem;
-  background-image: url("../images/pageView__img8.png");
-}
-.pageView__btnNumber9 {
-  right: -3.2rem;
-  bottom: 0;
-}
-.pageView__imgBox9 {
-  right: 0.1rem;
-  bottom: 0.1rem;
-  width: 34.1rem;
-  height: 7.3rem;
-  padding-top: 7.3rem;
-  background-image: url("../images/pageView__img9.png");
-}
-.help__btnClosed {
-  top: 1.6rem;
-  right: 1.6rem;
-  width: 4rem;
-  height: 4rem;
-  padding-top: 4rem;
-}
-.help__btnClosed:hover {
-  color: var(--point3);
+  color: var(--controllerPoint);
 }

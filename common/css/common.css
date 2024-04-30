@@ -21,16 +21,21 @@
   --popupBg: var(--grayF8);
   --white: #fff;
   --black: #000;
+  --controllerPoint: var(--mainLight);
 
   /* font */
   --fontSp: "Jalnan";
   --textPrimary: var(--gray20);
   --textSecondary: var(--gray70);
-  --textDisabled: var(--grayb0);
+  --textDisabled: var(--grayB0);
 
-  /* etc */
+  /* size */
   --width: 128rem;
   --height: 72rem;
+  --quizPadLeft: 16.8rem;
+  --pageViewPad: -3.2rem;
+
+  /* etc */
   --blur: blur(0.8rem);
   --textShadow04: 0.4rem 0.4rem 0;
   --textShadow08: 0.8rem 0.8rem 0;
@@ -39,23 +44,21 @@
   --boxShadow12: 0 0 1.2rem 0;
   --boxShadow16: 0 0 1.6rem 0;
   --boxShadow24: 0 0 2.4rem 0;
-  --quizPadLeft: 16.8rem;
 }
 
 body {
   font-family: 'Pretendard';
   font-size: 1.6rem;
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: -0.025em;
   color: var(--textSecondary);
 }
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
-}
+
 input::placeholder {
   font-weight: 400;
   color: var(--textDisabled);
 }
+
 .a11yHidden {
   overflow: hidden;
   position: absolute;
@@ -70,35 +73,45 @@ input::placeholder {
 }
 
 /* layout */
-.verticalCenter {
+.vrtCenter {
   display: flex;
   align-items: center;
   align-content: center;
 }
-.position--center, .position--bottom, .position--contentsCenter, .position--contentsBottom {
+.pos--center, .pos--bottom, .pos--conCenter, .pos--conBottom {
   position: absolute;
   right: 0;
   left: 0;
   margin: auto;
 }
-.position--center, .position--contentsCenter {
+.pos--center, .pos--conCenter {
   top: 0;
 }
-.position--center, .position--bottom {
+.pos--center, .pos--bottom {
   bottom: 0;
 }
-.position--contentsCenter, .position--contentsBottom {
-  bottom: 4.8rem;
+.pos--conCenter, .pos--conBottom {
+  bottom: 5.6rem;
 }
-/* 닫기 버튼 */
+
+/* closed btn */
 [class*="__btnClosed"] {
   position: absolute;
   overflow: hidden;
+  transition: transform 400ms ease;
 }
-/* O, X모양 */
+[class*="__btnClosed"]:hover {
+  transform: rotate(180deg);
+}
+[class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
+  height: 0.3rem;
+  border-radius: 0.2rem;
+}
+/* O, X 공통 */
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
-.ox .distractor__btnSelect::before, .ox .distractor__btnSelect::after,
-.quizResult__resultBox::before, .quizResult__resultBox::after {
+.question__resultMark::before, .question__resultMark.wrong::after,
+.distractor__btnSelect::before, .distractor__btnSelect.X::after,
+.quizResult__resultBox::before, .X .quizResult__resultBox::after {
   content: "";
   position: absolute;
   top: 0;
@@ -109,31 +122,54 @@ input::placeholder {
 }
 /* X모양 */
 [class*="__btnClosed"]::before, [class*="__btnClosed"]::after,
-.ox .distractor__btnSelect.X::before, .ox .distractor__btnSelect.X::after,
+.wrong::before, .wrong::after,
+.distractor__btnSelect.X::before, .distractor__btnSelect.X::after,
 .X .quizResult__resultBox::before, .X .quizResult__resultBox::after {
   width: 95%;
   background-color: currentColor;
 }
-[class*="__btnClosed"]::before,
-.ox .distractor__btnSelect.X::before,
+[class*="__btnClosed"]::before, .wrong::before, .distractor__btnSelect.X::before,
 .X .quizResult__resultBox::before {
   transform: rotate(45deg);
 }
-[class*="__btnClosed"]::after,
-.ox .distractor__btnSelect.X::after,
-.X .quizResult__resultBox::after {
+[class*="__btnClosed"]::after, .wrong::after,
+.distractor__btnSelect.X::after, .X .quizResult__resultBox::after {
   transform: rotate(-45deg);
 }
-/* closed btn */
-[class*="__btnClosed"]::before, [class*="__btnClosed"]::after {
-  height: 0.2rem;
-  border-radius: 0.1rem;
-}
 /* O모양 */
-.ox .distractor__btnSelect.O::before, .O .quizResult__resultBox::before {
+.correct::before, .distractor__btnSelect.O::before,
+.O .quizResult__resultBox::before {
   width: 75%;
   height: 75%;
   border-radius: 50%;
   border-style: solid;
   border-color: currentColor;
+}
+
+/* number box */
+.sa .distractor__number, [class*=pageView__btnNumber] {
+  width: 2.8rem;
+  height: 2.8rem;
+  padding-top: 0.5rem;
+  font-family: var(--fontSp);
+  font-size: 1.8rem;
+  line-height: 1;
+  background-color: var(--btnDefault);
+  border-radius: 0.4rem;
+}
+
+
+/* btn */
+.answerSheet__btnNextStep, .quizResult__btnRetry, .nav__btnChangeContents {
+  padding: 1rem 1.6rem;
+  font-family: var(--fontSp);
+  font-size: 2.4rem;
+  color: var(--textSecondary);
+  background-color: var(--btnDefault);
+  border-radius: 0.8rem;
+}
+.answerSheet__btnNextStep:hover, .quizResult__btnRetry:hover, .nav__btnChangeContents:hover, .nav__btnChangeContents.active {
+  color: var(--mainLight);
+  background-color: var(--point3);
+  border-color: var(--main);
 }

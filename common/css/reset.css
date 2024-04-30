@@ -1,20 +1,11 @@
 *, ::after, ::before {
   box-sizing: border-box;
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
-  font-smooth: always;
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 html {
-  font-size: 10px;
+  font-size: 62.5%;
   word-break: keep-all;
 }
 body {
-  position: relative;
   margin: 0;
   padding: 0;
 }
@@ -87,7 +78,6 @@ address, dfn, em, i, cite {
 }
 
 :root {
-  /* base color */
   --grayF8: #f8f8f8;
   --grayF4: #f4f4f4;
   --grayF0: #f0f0f0;
