@@ -12,9 +12,11 @@ const contentsUI = () => `<main class="contents pos--center"></main>`;
 const contentsTitleUI = ({
   title,
   exp,
-}) => `<div class="contents__title vrtCenter">
+}) => `<div class="contents__title vrtCenter ${
+  useContentsTitle ? "" : "a11yHidden"
+}">
 <h3 class="title__label">${title}</h3>
-<p class="title__exp">${exp}</p>
+${exp.length ? `<p class="title__exp">${exp}</p>` : ""}
 </div>`;
 
 const videoPageUI = () => `<section class="videoPage">
@@ -50,8 +52,16 @@ const skipUI = () =>
   `<button type="button" class="videoPage__btnSkip" title="오프닝 영상">SKIP</button>`;
 
 const outroUI = () => `<div class="videoPage__outro vrtCenter">
-<a href="../common/down/01.zip" class="videoPage__btnDown vrtCenter" download title="1차시 학습자료">DOWN</a>
-<button type="button" class="videoPage__btnPrint vrtCenter" title="1차시 학습자료">PRINT</button>
+${
+  useOutroDown
+    ? `<a href="../common/down/01.zip" class="videoPage__btnDown vrtCenter" download title="1차시 학습자료">DOWN</a>`
+    : ""
+}
+${
+  useOutroPrint
+    ? `<button type="button" class="videoPage__btnPrint vrtCenter" title="1차시 학습자료">PRINT</button>`
+    : ""
+}
 </div>`;
 
 const quizWrapUI = () => `<div class="quizWrap"></div>`;
@@ -155,85 +165,105 @@ ${myQuizResultArr
 <button type="button" class="quizResult__btnRetry">다시 풀기</button>
 </section>`;
 
-const controllerUI = () => `<section class="controller vrtCenter pos--bottom">
-<h3 class="a11yHidden">영상 controller 영역</h3>
-<button type="button" class="controller__btnIndex">INDEX<span class="a11yHidden">창 열기</span></button>
-<nav class="controller__index pos--conBottom">
-  <h4 class="a11yHidden">index</h4>
-  <ul class="index__list vrtCenter">
-    <li class="index__item active">
-      <p class="index__title" aria-hidden="true">웹 접근성</p>
-      <button type="button" class="index__btnMovePage" data-target="1">주제 & 목표<span class="a11yHidden">로 이동하기</span></button>
-    </li>
-    <li class="index__item">
-      <p class="index__title" aria-hidden="true">e-learning</p>
-      <button type="button" class="index__btnMovePage" data-target="2">본 학습<span class="a11yHidden">으로 이동하기</span></button>
-    </li>
-    <li class="index__item">
-      <p class="index__title" aria-hidden="true">영상 player</p>
-      <button type="button" class="index__btnMovePage" data-target="3">평가<span class="a11yHidden">로 이동하기</span></button>
-      <button type="button" class="index__btnMovePage" data-target="4">정리하기<span class="a11yHidden">로 이동하기</span></button>
-    </li>
-  </ul>
-  <button type="button" class="index__btnClosed" title="index">닫기</button>
-</nav>
-<button type="button" class="controller__btnHelp"><span class="controller__bubble">학습도우미</span><span class="a11yHidden">창 열기</span></button>
-<div class="controller__videoTime vrtCenter">
-  <p class="videoTime__total vrtCenter">
-    <span class="a11yHidden">영상 전체 시간</span>
-    <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
-    <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
-  </p>
-  <p class="videoTime__current vrtCenter">
-    <span class="a11yHidden">현재 재생 시간</span>
-    <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
-    <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
-  </p>
-  <div class="videoTime__progress progress">
-    <div class="progress__bar"></div>
+const controllerUI = (type) => {
+  const page = type === "page" ? true : false;
+  return `<section class="controller vrtCenter pos--bottom">
+  <h3 class="a11yHidden">영상 controller 영역</h3>
+  <button type="button" class="controller__btnIndex">INDEX<span class="a11yHidden">창 열기</span></button>
+  <nav class="controller__index pos--conBottom">
+    <h4 class="a11yHidden">index</h4>
+    <ul class="index__list vrtCenter">
+    ${pageGroup
+      .map(
+        ({ groupTitle, group }) => `<li class="index__item ${
+          group.includes(currentPage + 1) ? "active" : ""
+        }">
+    <p class="index__title" aria-hidden="true">${groupTitle}</p>
+    ${group
+      .map(
+        (item) =>
+          `<button type="button" class="index__btnMovePage ${
+            item === currentPage ? "active" : ""
+          }" data-target="${item}" ${item === currentPage ? "disabled" : ""}>${
+            pageInfo[item - 1].title
+          }<span class="a11yHidden">로 이동하기</span></button>`
+      )
+      .join("")}
+  </li>`
+      )
+      .join("")}
+    </ul>
+    <button type="button" class="index__btnClosed" title="index">닫기</button>
+  </nav>
+  <button type="button" class="controller__btnHelp"><span class="controller__bubble">학습도우미</span><span class="a11yHidden">창 열기</span></button>
+  <div class="controller__videoTime vrtCenter">
+    <p class="videoTime__total vrtCenter ${page ? "disabled" : ""}">
+      <span class="a11yHidden">영상 전체 시간</span>
+      <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
+      <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
+    </p>
+    <p class="videoTime__current vrtCenter ${page ? "disabled" : ""}">
+      <span class="a11yHidden">현재 재생 시간</span>
+      <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
+      <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
+    </p>
+    <div class="videoTime__progress progress ${page ? "disabled" : ""}">
+      <div class="progress__bar"></div>
+    </div>
   </div>
-</div>
-<button type="button" class="controller__btnPlay"><span class="controller__bubble">재생하기</span></button>
-<button type="button" class="controller__btnReplay"><span class="controller__bubble">다시보기</span></button>
-<div class="controller__volume vrtCenter">
-  <button type="button" class="controller__btnVolume"><span class="controller__bubble">소리끄기</span></button>
-  <div class="volume__progress progress">
-    <div class="progress__bar"></div>
+  <button type="button" class="controller__btnPlay" ${
+    page ? "disabled" : ""
+  }><span class="controller__bubble">재생하기</span></button>
+  <button type="button" class="controller__btnReplay" ${
+    page ? "disabled" : ""
+  }><span class="controller__bubble">다시보기</span></button>
+  <div class="controller__volume vrtCenter">
+    <button type="button" class="controller__btnVolume" ${
+      page ? "disabled" : ""
+    }><span class="controller__bubble">소리끄기</span></button>
+    <div class="volume__progress progress ${page ? "disabled" : ""}">
+      <div class="progress__bar"></div>
+    </div>
   </div>
-</div>
-<div class="controller__playRate">
-  <button type="button" class="controller__btnRateOpen"><span class="currentRate" aria-hidden="true">1.0</span><span class="controller__bubble">재생 속도</span><span class="a11yHidden">선택창 열기</span></button>
-  <ul class="playRate__list controller__bubble">
-    <li class="playRate__item">
-      <button type="button" class="plalyRate__btnChangeRate" data-rate="0.9">0.9<span class="a11yHidden">배로 보기</span></button>
-    </li>
-    <li class="playRate__item">
-      <button type="button" class="plalyRate__btnChangeRate" data-rate="1.0">1.0<span class="a11yHidden">배로 보기</span></button>
-    </li>
-    <li class="playRate__item">
-      <button type="button" class="plalyRate__btnChangeRate" data-rate="1.2">1.2<span class="a11yHidden">배로 보기</span></button>
-    </li>
-    <li class="playRate__item">
-      <button type="button" class="plalyRate__btnChangeRate" data-rate="1.5">1.5<span class="a11yHidden">배로 보기</span></button>
-    </li>
-    <li class="playRate__item">
-      <button type="button" class="plalyRate__btnChangeRate" data-rate="1.7">1.7<span class="a11yHidden">배로 보기</span></button>
-    </li>
-    <li class="playRate__item">
-      <button type="button" class="plalyRate__btnChangeRate" data-rate="2.0">2.0<span class="a11yHidden">배로 보기</span></button>
-    </li>
-  </ul>
-</div>
-<button type="button" class="controller__btnScript"><span class="controller__bubble">스크립트</span><span class="a11yHidden">창 열기</span></button>
-<button type="button" class="controller__btnFullscreen"><span class="controller__bubble">전체화면</span><span class="a11yHidden">으로 보기</span></button>
-<div class="controller__movePage vrtCenter">
-  <p class="movePage__total"><span class="a11yHidden">전체</span><span class="movePage__page">04</span><span class="a11yHidden">페이지</span></p>
-  <p class="movePage__current"><span class="a11yHidden">현재</span><span class="movePage__page">01</span><span class="a11yHidden">페이지</span></p>
-  <button type="button" class="controller__btnMovePrev"><span class="controller__bubble">이전 페이지로 이동하기</span></button>
-  <button type="button" class="controller__btnMoveNext"><span class="controller__bubble">다음 페이지로 이동하기</span></button>
-</div>
-</section>`;
-
+  <div class="controller__playRate">
+    <button type="button" class="controller__btnRateOpen" ${
+      page ? "disabled" : ""
+    }><span class="currentRate" aria-hidden="true">${initRate}</span><span class="controller__bubble">재생 속도</span><span class="a11yHidden">선택창 열기</span></button>
+    <ul class="playRate__list controller__bubble">
+    </ul>
+  </div>
+  ${
+    useScript
+      ? `<button type="button" class="controller__btnScript" ${
+          page ? "disabled" : ""
+        }><span class="controller__bubble">스크립트</span><span class="a11yHidden">창 열기</span></button>`
+      : ""
+  }
+  <button type="button" class="controller__btnFullscreen" ${
+    page ? "disabled" : ""
+  }><span class="controller__bubble">전체화면</span><span class="a11yHidden">으로 보기</span></button>
+  <div class="controller__movePage vrtCenter">
+    <p class="movePage__total"><span class="a11yHidden">전체</span><span class="movePage__page">${iToStr(
+      totalPage
+    )}</span><span class="a11yHidden">페이지</span></p>
+    <p class="movePage__current"><span class="a11yHidden">현재</span><span class="movePage__page">${iToStr(
+      currentPage
+    )}</span><span class="a11yHidden">페이지</span></p>
+    <button type="button" class="controller__btnMovePrev"><span class="controller__bubble">이전 페이지로 이동하기</span></button>
+    <button type="button" class="controller__btnMoveNext"><span class="controller__bubble">다음 페이지로 이동하기</span></button>
+  </div>
+  </section>`;
+};
+const rateListUI = (currentRate) => {
+  const arr = rateList.filter((item) => item !== currentRate);
+  return arr
+    .map(
+      (item) => `<li class="playRate__item">
+<button type="button" class="plalyRate__btnChangeRate" data-rate="${item}">${item}<span class="a11yHidden">배로 보기</span></button>
+</li>`
+    )
+    .join("");
+};
 const helpUI = () => `<section class="help pos--center open">
 <h3 class="a11yHidden">학습도우미</h3>
 <nav class="help__nav"></nav>

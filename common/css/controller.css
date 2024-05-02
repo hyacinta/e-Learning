@@ -271,7 +271,7 @@
   color: var(--controllerPoint);
   background-color: var(--point3);
 }
-.index__btnMovePage:hover {
+.index__btnMovePage:hover, .index__btnMovePage.active {
   color: var(--textPrimary);
   text-decoration: underline;
 }

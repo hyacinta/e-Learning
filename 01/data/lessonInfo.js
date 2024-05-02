@@ -8,7 +8,7 @@ const bookMarkInfo = [
 const initQuizChance = 2;
 let quizChance = initQuizChance;
 let currentQuizNumber = 1;
-let myQuizResultArr = ["O", "X", "O"];
+let myQuizResultArr = [];
 
 const quizInfo = [
   {

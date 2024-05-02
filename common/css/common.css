@@ -172,3 +172,9 @@ input::placeholder {
   background-color: var(--point3);
   border-color: var(--main);
 }
+
+/* disabled */
+.disabled, [class*=controller__btn]:disabled {
+  opacity: 0.3;
+  cursor: default !important;
+}

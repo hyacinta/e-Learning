@@ -1,5 +1,8 @@
 // 기능 설정
 const useContentsTitle = true;
+const useScript = true;
+const useOutroDown = true;
+const useOutroPrint = true;
 
 // 과정 정보
 const course = "Front-end Developer 귤양의 개발로그";
@@ -21,6 +24,11 @@ const lessonInfo = [
   { id: 13, title: "13차시명입니다." },
   { id: 14, title: "14차시명입니다." },
   { id: 15, title: "15차시명입니다." },
+];
+const pageGroup = [
+  { id: 1, groupTitle: "Front-end", group: [1] },
+  { id: 2, groupTitle: "Developer", group: [2] },
+  { id: 3, groupTitle: "귤양의 개발로그", group: [3, 4] },
 ];
 const pageInfo = [
   {
