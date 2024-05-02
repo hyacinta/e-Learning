@@ -7,6 +7,9 @@ const initVolume = 0.7;
 const initRate = "1.0";
 const rateList = ["0.9", "1.0", "1.2", "1.5", "2.0"];
 
+// 동작 상태 설정
+let isVideoPlay = device !== "m" ? true : false;
+
 // 초기화면 불러오기
 $(document).ready(() => {
   $("title").text(course);
@@ -54,13 +57,20 @@ const setVideoPage = (type) => {
   setController(video[0]);
 
   video.on("loadedmetadata", () => {
-    console.log("시작전");
+    isVideoState(video[0], "total", video[0].duration);
+
+    video[0].volume = getCookie("customVolume")
+      ? getCookie("customVolume")
+      : initVolume;
+    video[0].playbackRate = getCookie("customRate")
+      ? getCookie("customRate")
+      : initRate;
   });
   video.on("timeupdate", () => {
-    console.log("재생중");
+    isVideoState(video[0], "current", video[0].currentTime);
   });
   video.on("ended", () => {
-    console.log("끝");
+    isVideoState(video[0]);
   });
 };
 const setSkipBtn = (video) => {
@@ -68,7 +78,7 @@ const setSkipBtn = (video) => {
 
   // 동작
   $(".videoPage__btnSkip").on("click", function () {
-    video.currentTime = introSkipTime;
+    operateVideo(video, introSkipTime);
     $(".videoPage__btnSkip").remove();
   });
 };
@@ -89,8 +99,9 @@ const setBookMarkList = (video) => {
   $(".bookMark__btnMoveTime").on("click", function () {
     $(".videoPage__bookMark").removeClass("open");
 
-    video.currentTime = convertToSec(
-      bookMarkInfo[$(this).attr("data-synk") - 1].synkTime
+    operateVideo(
+      video,
+      convertToSec(bookMarkInfo[$(this).attr("data-synk") - 1].synkTime)
     );
   });
 };

@@ -21,7 +21,7 @@ ${exp.length ? `<p class="title__exp">${exp}</p>` : ""}
 
 const videoPageUI = () => `<section class="videoPage">
 <video class="video" autoplay>
-    <source src="//mp4.teacherville.co.kr/teacherville/1000879/01_02.mp4" type="video/mp4">
+    <source src="//mp4.teacherville.co.kr/teacherville/1000879/01_01.mp4" type="video/mp4">
   </video>
 </section>`;
 
@@ -230,7 +230,9 @@ const controllerUI = (type) => {
   <div class="controller__playRate">
     <button type="button" class="controller__btnRateOpen" ${
       page ? "disabled" : ""
-    }><span class="currentRate" aria-hidden="true">${initRate}</span><span class="controller__bubble">재생 속도</span><span class="a11yHidden">선택창 열기</span></button>
+    }><span class="currentRate" aria-hidden="true">${
+    getCookie("customRate") ? getCookie("customRate") : initRate
+  }</span><span class="controller__bubble">재생 속도</span><span class="a11yHidden">선택창 열기</span></button>
     <ul class="playRate__list controller__bubble">
     </ul>
   </div>

@@ -20,7 +20,7 @@
   color: var(--controllerPoint);
 }
 .controller [class*=__current] {
-  font-weight: 200;
+  font-weight: 300;
 }
 .progress {
   height: 0.8rem;
@@ -94,6 +94,9 @@
 .videoTime__total {
   order: 1;
 }
+.videoTime__sec {
+  min-width: 2.4rem
+}
 .videoTime__sec::before {
   content: ":";
   margin: 0 0.2rem;
@@ -148,7 +151,8 @@
   width: 4rem;
   overflow: hidden;
 }
-.controller__btnRateOpen:hover {
+.controller__btnRateOpen:hover, .open .controller__btnRateOpen {
+  color: var(--mainLight);
   background-image: url("../images/btn__rate--hover.png");
 }
 .controller__btnRateOpen, .controller__btnRateOpen:disabled {
@@ -160,6 +164,9 @@
 .controller__btnRateOpen .controller__bubble {
   left: -0.5rem;
   width: 7.6rem;
+}
+.open .controller__btnRateOpen {
+  overflow: hidden;
 }
 .playRate__list {
   display: none;
@@ -192,6 +199,10 @@
 }
 .movePage__total, .controller__movePage::before, .controller__btnMoveNext {
   order: 1;
+}
+.movePage__page {
+  display: inline-block;
+  width: 2.4rem;
 }
 .controller__btnMovePrev {
   order: -1;
