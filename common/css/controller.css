@@ -286,3 +286,15 @@
 .index__btnClosed:hover {
   color: var(--controllerPoint);
 }
+
+@media screen and (min-width: 1570px) {
+  .controller__btnIndex, .controller__movePage {
+    position: absolute !important;
+  }
+  .controller__btnIndex {
+    left: 0;
+  }
+  .controller__movePage {
+    right: 0;
+  }
+}

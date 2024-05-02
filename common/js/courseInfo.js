@@ -1,3 +1,6 @@
+// 기능 설정
+const useContentsTitle = true;
+
 // 과정 정보
 const course = "Front-end Developer 귤양의 개발로그";
 const lessonInfo = [

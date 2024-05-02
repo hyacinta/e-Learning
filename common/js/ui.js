@@ -6,12 +6,23 @@ const headerUI = ({ id, title }) => `<header class="header vrtCenter">
   <span class="lessonTitle__text">${title}</span>
 </h2>
 </header>`;
+
 const contentsUI = () => `<main class="contents pos--center"></main>`;
-const contentsTitleUI = () => `<div class="contents__title vrtCenter">
-<h3 class="title__label">평가</h3>
-<p class="title__exp">이번 시간에 학습한 내용을 바탕으로 문제를 풀어보세요.</p>
+
+const contentsTitleUI = ({
+  title,
+  exp,
+}) => `<div class="contents__title vrtCenter">
+<h3 class="title__label">${title}</h3>
+<p class="title__exp">${exp}</p>
 </div>`;
-const videoPageUI = () => `<section class="videoPage"></section>`;
+
+const videoPageUI = () => `<section class="videoPage">
+<video class="video" autoplay>
+    <source src="//mp4.teacherville.co.kr/teacherville/1000879/01_02.mp4" type="video/mp4">
+  </video>
+</section>`;
+
 const bookMarkUI = () => `<div class="videoPage__bookMark">
 <button type="button" class="bookMark__btnListOpen vrtCenter">
   북 마 크 <span class="a11yHidden">리스트 열기</span>
@@ -20,14 +31,23 @@ const bookMarkUI = () => `<div class="videoPage__bookMark">
 </ol>
 </div>`;
 const bookMarkListUI = () =>
-  `<li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime" data-synk="1">1. 백다은 선생님의 Q & A</button></li>`;
+  bookMarkInfo
+    .map(
+      ({ id, synkTime, title }) =>
+        `<li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime" data-synk="${id}">${id}. ${title}</button></li>`
+    )
+    .join("");
+
 const skipUI = () =>
   `<button type="button" class="videoPage__btnSkip" title="오프닝 영상">SKIP</button>`;
+
 const outroUI = () => `<div class="videoPage__outro vrtCenter">
 <a href="../common/down/01.zip" class="videoPage__btnDown vrtCenter" download title="1차시 학습자료">DOWN</a>
 <button type="button" class="videoPage__btnPrint vrtCenter" title="1차시 학습자료">PRINT</button>
 </div>`;
+
 const quizPaperUI = () => `<section class="quizPaper quiz1">
+<audio src="../common/sound/quiz.mp3" class="video" autoplay></audio>
 <h4 class="a11yHidden">1번 문제</h4>
 </section>`;
 const questionUI = () => `<div class="quizPaper__question vrtCenter">
@@ -105,6 +125,7 @@ const answerSheetUI =
 </div>
 <button type="button" class="answerSheet__btnNextStep">다음 문제<span class="a11yHidden">풀기</span></button>
 </section>`;
+
 const quizResultUI = () => `<section class="quizResult vrtCenter">
 <h4 class="a11yHidden">퀴즈 결과 보기</h4>
 <ol class="quizResult__list vrtCenter">
@@ -123,6 +144,7 @@ const quizResultUI = () => `<section class="quizResult vrtCenter">
 </ol>
 <button type="button" class="quizResult__btnRetry">다시 풀기</button>
 </section>`;
+
 const controllerUI = () => `<section class="controller vrtCenter pos--bottom">
 <h3 class="a11yHidden">영상 controller 영역</h3>
 <button type="button" class="controller__btnIndex">INDEX<span class="a11yHidden">창 열기</span></button>
