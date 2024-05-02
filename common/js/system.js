@@ -24,15 +24,11 @@ const setContents = (info) => {
     $(".contents").append(contentsTitleUI(info));
   }
 
-  switch (type) {
-    case "videoPage":
-      setVideoPage(subType);
-      break;
-    default:
-      setQuiz();
-      break;
+  if (type === "videoPage") {
+    setVideoPage(subType);
+    return;
   }
-  setController();
+  setQuiz();
 };
 
 const setVideoPage = (type) => {
@@ -49,6 +45,7 @@ const setVideoPage = (type) => {
       setBookMark();
       break;
   }
+  setController();
 };
 const setSkipBtn = () => {
   $(".videoPage").append(skipUI());
@@ -85,6 +82,28 @@ const setOutroBtn = () => {
 };
 
 const setQuiz = () => {
-  setQuizPaper();
+  $(".contents").append(quizWrapUI());
+  setQuizPaper(quizInfo[currentQuizNumber - 1]);
 };
-const setQuizPaper = () => {};
+const setQuizPaper = (info) => {
+  $(".quizWrap").html(quizPaperUI(info));
+  setController();
+  // $(".quizPaper").append(answerSheetUI(info));
+
+  // 동작
+  $(".answerSheet__btnNextStep").on("click", function () {
+    currentQuizNumber += 1;
+
+    currentQuizNumber > quizInfo.length
+      ? setQuizResult()
+      : setQuizPaper(quizInfo[currentQuizNumber - 1]);
+  });
+};
+const setQuizResult = () => {
+  $(".quizWrap").html(quizResultUI());
+
+  $(".quizResult__btnRetry").on("click", function () {
+    currentQuizNumber = 1;
+    setQuizPaper(quizInfo[currentQuizNumber - 1]);
+  });
+};

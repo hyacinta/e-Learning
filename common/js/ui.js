@@ -46,54 +46,52 @@ const outroUI = () => `<div class="videoPage__outro vrtCenter">
 <button type="button" class="videoPage__btnPrint vrtCenter" title="1차시 학습자료">PRINT</button>
 </div>`;
 
-const quizPaperUI = () => `<section class="quizPaper quiz1">
-<audio src="../common/sound/quiz.mp3" class="video" autoplay></audio>
-<h4 class="a11yHidden">1번 문제</h4>
-</section>`;
-const questionUI = () => `<div class="quizPaper__question vrtCenter">
-<p class="question__oxExp">아래의 설명을 읽고 O, X를 선택하세요.</p>
-<p class="question__text">교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절 하지 <em>않은</em> 것은? 교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절 하지 <em>않은</em> 것은? 교사의 본업을 바탕으로 펼쳐나갈 수 있는 활동으로 적절 하지 <em>않은</em> 것은?</p>
-<div class="question__resultMark correct">맞았습니다.</div>
+const quizWrapUI = () => `<div class="quizWrap"></div>`;
+
+const quizPaperUI = (info) => {
+  const { id, type, additional } = info;
+  return `<section class="quizPaper quiz${id}">
+  <audio src="../common/sound/quiz.mp3" class="audio" autoplay></audio>
+  <h4 class="a11yHidden">${id}번 문제</h4>
+  ${questionUI(info)}
+  ${additional.length ? additionalUI(additional) : ""}
+  ${type === "sa" ? saUI(info) : type === "ox" ? oxUI(info) : juUI(info)}
+  </section>`;
+};
+const questionUI = ({
+  oxExp,
+  question,
+}) => `<div class="quizPaper__question vrtCenter">
+${oxExp.length ? `<p class="question__oxExp">${oxExp}</p>` : ``}
+<p class="question__text">${question}</p>
+<div class="question__resultMark"></div>
 </div>`;
-const additionalUI = () => `<ul class="quizPaper__additional vrtCenter">
-<li class="additional__item">보기1</li>
-<li class="additional__item">보기2</li>
-<li class="additional__item">보기3</li>
-<li class="additional__item">보기4</li>
+const additionalUI = (
+  additional
+) => `<ul class="quizPaper__additional vrtCenter">
+${additional
+  .map((item) => `<li class="additional__item">${item}</li>`)
+  .join("")}
 </ul>`;
-const saUI = () => `<ol class="quizPaper__distractor sa">
-<li class="distractor__item">
-  <button class="distractor__btnSelect mySelect vrtCenter" data-select="1">
-    <span class="btnSelect__chip"></span>
-    <span class="distractor__number">1</span>
-    <span class="a11yHidden">번</span> 보기 1번 선택지 입니다.
-  </button>
-</li>
-<li class="distractor__item">
-  <button class="distractor__btnSelect correctAnswer vrtCenter" data-select="2">
-    <span class="btnSelect__chip"></span>
-    <span class="distractor__number">2</span>
-    <span class="a11yHidden">번</span> 보기 2번 선택지 입니다.
-  </button>
-</li>
-<li class="distractor__item">
-  <button class="distractor__btnSelect vrtCenter" data-select="3">
-    <span class="btnSelect__chip"></span>
-    <span class="distractor__number">3</span>
-    <span class="a11yHidden">번</span> 보기 3번 선택지 입니다.
-  </button>
-</li>
-<li class="distractor__item">
-  <button class="distractor__btnSelect vrtCenter" data-select="4">
-    <span class="btnSelect__chip"></span>
-    <span class="distractor__number">4</span>
-    <span class="a11yHidden">번</span> 보기 4번 선택지 입니다.
-  </button>
-</li>
+const saUI = ({
+  type,
+  distractor,
+}) => `<ol class="quizPaper__distractor ${type}">
+${distractor
+  .map(
+    (item, idx) => `<li class="distractor__item">
+<button class="distractor__btnSelect vrtCenter" data-select="${idx + 1}">
+  <span class="btnSelect__chip"></span>
+  <span class="distractor__number">${idx + 1}</span>
+  <span class="a11yHidden">번</span> ${item}
+</button>
+</li>`
+  )
+  .join("")}
 </ol>`;
-const oxUI = () => `<ul class="quizPaper__distractor ox vrtCenter">
+const oxUI = ({ type }) => `<ul class="quizPaper__distractor vrtCenter ${type}">
 <li class="distractor__item">
-  <button class="distractor__btnSelect O mySelect" data-select="O">
+  <button class="distractor__btnSelect O" data-select="O">
     <span class="btnSelect__chip"></span>
     <span class="a11yHidden">맞습니다.</span>
   </button>
@@ -105,7 +103,7 @@ const oxUI = () => `<ul class="quizPaper__distractor ox vrtCenter">
   </button>
 </li>
 </ul>`;
-const juUI = () => `<div class="quizPaper__distractor ju">
+const juUI = ({ type }) => `<div class="quizPaper__distractor ${type}">
 <input type="text" class="distractor__input" placeholder="정답을 입력하세요.">
 <button class="distractor__btnConfirm">정답 확인</button>
 </div>`;
@@ -113,34 +111,38 @@ const alertUI =
   () => `<div class="quizPaper__alertMessage pos--center vrtCenter">
 <p class="alertMessage__textBox vrtCenter">다시 한 번 풀어보세요.</p>
 </div>`;
-const answerSheetUI =
-  () => `<section class="quizPaper__answerSheet pos--bottom">
+const answerSheetUI = ({
+  answer,
+  explanation,
+}) => `<section class="quizPaper__answerSheet pos--bottom">
 <div class="answerSheet__correct vrtCenter">
   <p class="answerSheet__label">정답</p>
-  <p class="correct__text">4</p>
+  <p class="correct__text">${answer}</p>
 </div>
-<div class="answerSheet__exp vrtCenter">
+<div class="answerSheet__exp">
   <p class="answerSheet__label">해설</p>
-  <p class="exp__text">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</p>
+  <p class="exp__text">${explanation}</p>
 </div>
-<button type="button" class="answerSheet__btnNextStep">다음 문제<span class="a11yHidden">풀기</span></button>
+<button type="button" class="answerSheet__btnNextStep">${
+  currentQuizNumber >= quizInfo.length
+    ? "결과보기"
+    : `다음 문제<span class="a11yHidden">풀기</span>`
+}</button>
 </section>`;
 
 const quizResultUI = () => `<section class="quizResult vrtCenter">
 <h4 class="a11yHidden">퀴즈 결과 보기</h4>
 <ol class="quizResult__list vrtCenter">
-  <li class="quizResult__item O">
-    <p class="quizResult__quizNumber">1번 문제</p>
-    <p class="quizResult__resultBox">맞았습니다.</p>
-  </li>
-  <li class="quizResult__item X">
-    <p class="quizResult__quizNumber">2번 문제</p>
-    <p class="quizResult__resultBox">맞았습니다.</p>
-  </li>
-  <li class="quizResult__item X">
-    <p class="quizResult__quizNumber">3번 문제</p>
-    <p class="quizResult__resultBox">맞았습니다.</p>
-  </li>
+${myQuizResultArr
+  .map(
+    (item, idx) => `<li class="quizResult__item ${item}">
+<p class="quizResult__quizNumber">${idx + 1}번 문제</p>
+<p class="quizResult__resultBox">${
+      item === "O" ? "맞았습니다." : "틀렸습니다."
+    }</p>
+</li>`
+  )
+  .join("")}
 </ol>
 <button type="button" class="quizResult__btnRetry">다시 풀기</button>
 </section>`;

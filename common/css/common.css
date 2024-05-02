@@ -159,7 +159,7 @@ input::placeholder {
 }
 
 /* btn */
-.answerSheet__btnNextStep, .quizResult__btnRetry, .nav__btnChangeContents {
+.answerSheet__btnNextStep, .quizResult__btnRetry, .nav__btnChangeContents, .distractor__btnConfirm {
   padding: 1rem 1.6rem;
   font-family: var(--fontSp);
   font-size: 2.4rem;
@@ -167,7 +167,7 @@ input::placeholder {
   background-color: var(--btnDefault);
   border-radius: 0.8rem;
 }
-.answerSheet__btnNextStep:hover, .quizResult__btnRetry:hover, .nav__btnChangeContents:hover, .nav__btnChangeContents.active {
+.answerSheet__btnNextStep:hover, .quizResult__btnRetry:hover, .nav__btnChangeContents:hover, .nav__btnChangeContents.active, .distractor__btnConfirm:hover {
   color: var(--mainLight);
   background-color: var(--point3);
   border-color: var(--main);
