@@ -51,3 +51,16 @@ const getCurrentURL = (target) => {
 
 // 1자리 숫자 2자리(문자열)로 변경
 const iToStr = (num) => (num < 10 ? "0" + num : num);
+
+// 시간 형식 변경
+const convertToMin = (playTime) => {
+  const min = Math.floor(playTime / 60);
+  const sec = Math.floor(playTime - min * 60);
+  return iToStr(min) + ":" + iToStr(sec);
+};
+const convertToSec = (playTime) => {
+  const temp = playTime.split(":");
+  const min = temp[0] * 60;
+  const sec = temp[1] * 1;
+  return min + sec;
+};

@@ -133,8 +133,11 @@ body {
   text-align: left;
   text-indent: -1.6rem;
 }
-.bookMark__btnMoveTime:hover {
+.bookMark__btnMoveTime:hover, .bookMark__btnMoveTime.active {
   color: var(--mainLight);
+}
+.bookMark__btnMoveTime.active {
+  text-decoration: underline;
 }
 /* skip btn */
 .videoPage__btnSkip {

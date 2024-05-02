@@ -3,6 +3,8 @@ const useContentsTitle = true;
 
 // 과정 정보
 const course = "Front-end Developer 귤양의 개발로그";
+const introSkipTime = 13;
+
 const lessonInfo = [
   { id: 1, title: "웹 접근성을 고려한 e-learning 영상 player 개발" },
   { id: 2, title: "2차시명입니다." },

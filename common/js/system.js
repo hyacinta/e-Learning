@@ -19,7 +19,6 @@ const setContents = (info) => {
   const { type, subType } = info;
 
   $(".wrap").append(contentsUI());
-
   if (useContentsTitle) {
     $(".contents").append(contentsTitleUI(info));
   }
@@ -34,50 +33,69 @@ const setContents = (info) => {
 const setVideoPage = (type) => {
   $(".contents").append(videoPageUI());
 
+  const video = $(".video");
+
   switch (type) {
     case "video-i":
-      setSkipBtn();
+      setSkipBtn(video[0]);
       break;
     case "video-o":
       setOutroBtn();
       break;
     default:
-      setBookMark();
+      setBookMark(video[0]);
       break;
   }
-  setController();
+  setController(video[0]);
+
+  video.on("loadedmetadata", () => {
+    console.log("시작전");
+  });
+  video.on("timeupdate", () => {
+    console.log("재생중");
+  });
+  video.on("ended", () => {
+    console.log("끝");
+  });
 };
-const setSkipBtn = () => {
+const setSkipBtn = (video) => {
   $(".videoPage").append(skipUI());
 
   // 동작
   $(".videoPage__btnSkip").on("click", function () {
-    console.log("skip");
+    video.currentTime = introSkipTime;
   });
 };
-const setBookMark = () => {
+const setBookMark = (video) => {
   $(".videoPage").append(bookMarkUI());
 
   // 동작
   $(".bookMark__btnListOpen").on("click", function () {
     $(".videoPage__bookMark").toggleClass("open");
+    setBookMarkList(video);
   });
-  setBookMarkList();
 };
-const setBookMarkList = () => {
-  $(".bookMark__list").html(bookMarkListUI());
+const setBookMarkList = (video) => {
+  $(".bookMark__list").html(bookMarkListUI(video));
 
   // 동작
-  $(".videoPage__btnSkip").on("click", function () {
-    console.log("북마크 리스트");
+  $(".bookMark__btnMoveTime").on("click", function () {
+    $(".videoPage__bookMark").removeClass("open");
+
+    video.currentTime = convertToSec(
+      bookMarkInfo[$(this).attr("data-synk") - 1].synkTime
+    );
   });
 };
 const setOutroBtn = () => {
   $(".videoPage").append(outroUI());
 
   // 동작
-  $(".videoPage__btnSkip").on("click", function () {
-    console.log("outro");
+  $(".videoPage__btnDown").on("click", function () {
+    console.log("outro down");
+  });
+  $(".videoPage__btnPrint").on("click", function () {
+    console.log("outro print");
   });
 };
 

@@ -30,11 +30,19 @@ const bookMarkUI = () => `<div class="videoPage__bookMark">
 <ol class="bookMark__list">
 </ol>
 </div>`;
-const bookMarkListUI = () =>
+const bookMarkListUI = (video) =>
   bookMarkInfo
     .map(
       ({ id, synkTime, title }) =>
-        `<li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime" data-synk="${id}">${id}. ${title}</button></li>`
+        `<li class="bookMark__item"><button type="button" class="bookMark__btnMoveTime ${
+          id === bookMarkInfo.length &&
+          video.currentTime >= convertToSec(synkTime)
+            ? "active"
+            : video.currentTime >= convertToSec(synkTime) &&
+              video.currentTime <= convertToSec(bookMarkInfo[id].synkTime)
+            ? "active"
+            : ""
+        }" data-synk="${id}">${id}. ${title}</button></li>`
     )
     .join("");
 
