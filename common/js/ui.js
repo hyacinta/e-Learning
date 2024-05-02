@@ -54,12 +54,14 @@ const skipUI = () =>
 const outroUI = () => `<div class="videoPage__outro vrtCenter">
 ${
   useOutroDown
-    ? `<a href="../common/down/01.zip" class="videoPage__btnDown vrtCenter" download title="1차시 학습자료">DOWN</a>`
+    ? `<a href="../common/down/${iToStr(
+        currentChapter
+      )}.zip" class="videoPage__btnDown vrtCenter" download title="${currentChapter}차시 학습자료">DOWN</a>`
     : ""
 }
 ${
   useOutroPrint
-    ? `<button type="button" class="videoPage__btnPrint vrtCenter" title="1차시 학습자료">PRINT</button>`
+    ? `<button type="button" class="videoPage__btnPrint vrtCenter" title="${currentChapter}차시 학습자료">PRINT</button>`
     : ""
 }
 </div>`;
@@ -176,7 +178,7 @@ const controllerUI = (type) => {
     ${pageGroup
       .map(
         ({ groupTitle, group }) => `<li class="index__item ${
-          group.includes(currentPage + 1) ? "active" : ""
+          group.includes(currentPage) ? "active" : ""
         }">
     <p class="index__title" aria-hidden="true">${groupTitle}</p>
     ${group

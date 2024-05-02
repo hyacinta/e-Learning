@@ -9,6 +9,7 @@ const rateList = ["0.9", "1.0", "1.2", "1.5", "2.0"];
 
 // 초기화면 불러오기
 $(document).ready(() => {
+  $("title").text(course);
   setHeader();
   setContents(pageInfo[currentPage - 1]);
 });
@@ -68,6 +69,7 @@ const setSkipBtn = (video) => {
   // 동작
   $(".videoPage__btnSkip").on("click", function () {
     video.currentTime = introSkipTime;
+    $(".videoPage__btnSkip").remove();
   });
 };
 const setBookMark = (video) => {
@@ -76,6 +78,7 @@ const setBookMark = (video) => {
   // 동작
   $(".bookMark__btnListOpen").on("click", function () {
     $(".videoPage__bookMark").toggleClass("open");
+    if (!$(".videoPage__bookMark.open").length) return;
     setBookMarkList(video);
   });
 };
@@ -113,7 +116,7 @@ const setQuiz = (type) => {
 const setQuizPaper = (info) => {
   $(".quizWrap").html(quizPaperUI(info));
 
-  $(".quizPaper").append(answerSheetUI(info));
+  // $(".quizPaper").append(answerSheetUI(info));
 
   // 동작
   $(".answerSheet__btnNextStep").on("click", function () {

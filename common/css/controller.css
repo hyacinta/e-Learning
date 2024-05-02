@@ -3,7 +3,11 @@
   position: relative;
   margin: 0 0.4rem;
 }
-[class^=controller__btn] {
+[class^=controller__btn]:hover, .plalyRate__btnChangeRate:hover {
+  color: var(--controllerPoint);
+  overflow: visible;
+}
+[class^=controller__btn], [class^=controller__btn]:disabled {
   position: relative;
   min-width: 4rem;
   height: 4rem;
@@ -11,10 +15,6 @@
   background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;
-}
-[class^=controller__btn]:hover, .plalyRate__btnChangeRate:hover {
-  color: var(--controllerPoint);
-  overflow: visible;
 }
 .controller [class*=__total] {
   color: var(--controllerPoint);
@@ -114,47 +114,48 @@
   border-radius: 0.8rem;
   box-shadow: var(--boxShadow08) var(--blackOp9);
 }
-.controller__btnPlay {
-  background-image: url("../images/btn__play.png");
-}
 .controller__btnPlay:hover {
   background-image: url("../images/btn__play--hover.png");
 }
-.controller__btnPlay.pause {
-  background-image: url("../images/btn__pause.png");
+.controller__btnPlay, .controller__btnPlay:disabled {
+  background-image: url("../images/btn__play.png");
 }
 .controller__btnPlay.pause:hover {
   background-image: url("../images/btn__pause--hover.png");
 }
-.controller__btnReplay {
-  background-image: url("../images/btn__replay.png");
+.controller__btnPlay.pause, .controller__btnPlay.pause:disabled {
+  background-image: url("../images/btn__pause.png");
 }
 .controller__btnReplay:hover {
   background-image: url("../images/btn__replay--hover.png");
 }
-.controller__btnVolume {
-  background-image: url("../images/btn__volume.png");
+.controller__btnReplay, .controller__btnReplay:disabled {
+  background-image: url("../images/btn__replay.png");
 }
 .controller__btnVolume:hover {
   background-image: url("../images/btn__volume--hover.png");
 }
-.controller__btnVolume.mute {
-  background-image: url("../images/btn__mute.png");
+.controller__btnVolume, .controller__btnVolume:disabled {
+  background-image: url("../images/btn__volume.png");
 }
 .controller__btnVolume.mute:hover {
   background-image: url("../images/btn__mute--hover.png");
+}
+.controller__btnVolume.mute, .controller__btnVolume.mute:disabled {
+  background-image: url("../images/btn__mute.png");
 }
 .volume__progress {
   width: 4rem;
   overflow: hidden;
 }
-.controller__btnRateOpen {
-  padding: 0 1rem 0 3rem;
-  background-image: url("../images/btn__rate.png");
-  background-position-x: left;
-}
 .controller__btnRateOpen:hover {
   background-image: url("../images/btn__rate--hover.png");
+}
+.controller__btnRateOpen, .controller__btnRateOpen:disabled {
+  padding: 0 1rem 0 3rem;
+  color: var(--white);
+  background-image: url("../images/btn__rate.png");
+  background-position-x: left;
 }
 .controller__btnRateOpen .controller__bubble {
   left: -0.5rem;
@@ -177,17 +178,17 @@
 .plalyRate__btnChangeRate:hover {
   background-image: url("../images/btn__changeRate--hover.png");
 }
-.controller__btnScript {
-  background-image: url("../images/btn__script.png");
-}
 .controller__btnScript:hover {
   background-image: url("../images/btn__script--hover.png");
 }
-.controller__btnFullscreen {
-  background-image: url("../images/btn__fullscreen.png");
+.controller__btnScript, .controller__btnScript:disabled {
+  background-image: url("../images/btn__script.png");
 }
 .controller__btnFullscreen:hover {
   background-image: url("../images/btn__fullscreen--hover.png");
+}
+.controller__btnFullscreen, .controller__btnFullscreen:disabled {
+  background-image: url("../images/btn__fullscreen.png");
 }
 .movePage__total, .controller__movePage::before, .controller__btnMoveNext {
   order: 1;

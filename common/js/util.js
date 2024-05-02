@@ -64,3 +64,20 @@ const convertToSec = (playTime) => {
   const sec = temp[1] * 1;
   return min + sec;
 };
+
+const movePage = (thisBtn) => {
+  if (
+    (currentPage === 1 && thisBtn === "controller__btnMovePrev") ||
+    (currentPage === totalPage && thisBtn === "controller__btnMoveNext")
+  ) {
+    alert(currentPage === 1 ? "첫 페이지 입니다." : "마지막 페이지 입니다.");
+  } else {
+    currentPage =
+      thisBtn === "controller__btnMoveNext"
+        ? currentPage + 1
+        : thisBtn === "controller__btnMovePrev"
+        ? currentPage - 1
+        : thisBtn;
+    window.open(iToStr(currentPage) + ".html", "_self");
+  }
+};
