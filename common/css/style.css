@@ -679,25 +679,25 @@ body {
   background-image: url("../images/pageView__img4.png");
 }
 .pageView__btnNumber5 {
-  left: var(--pageViewPad);
+  right: var(--pageViewPad);
   bottom: 0;
 }
 .pageView__imgBox5 {
-  left: 0.1rem;
+  right: 0.1rem;
   bottom: 0.1rem;
-  width: 73.8rem;
-  height: 15.1rem;
-  padding-top: 15.1rem;
+  width: 34.1rem;
+  height: 7.3rem;
+  padding-top: 7.3rem;
   background-image: url("../images/pageView__img5.png");
 }
 .pageView__btnNumber6 {
-  left: 8.8rem;
+  right: 9rem;
   bottom: var(--pageViewPad);
-}
+} 
 .pageView__imgBox6 {
-  left: 9.2rem;
+  right: 9.2rem;
   bottom: 0.1rem;
-  width: 38rem;
+  width: 22.8rem;
   height: 5.3rem;
   padding-top: 5.3rem;
   background-image: url("../images/pageView__img6.png");
@@ -719,27 +719,27 @@ body {
   background-image: url("../images/pageView__img7.png");
 }
 .pageView__btnNumber8 {
-  right: 9rem;
+  left: 8.8rem;
   bottom: var(--pageViewPad);
-} 
+}
 .pageView__imgBox8 {
-  right: 9.2rem;
+  left: 9.2rem;
   bottom: 0.1rem;
-  width: 22.8rem;
+  width: 38rem;
   height: 5.3rem;
   padding-top: 5.3rem;
   background-image: url("../images/pageView__img8.png");
 }
 .pageView__btnNumber9 {
-  right: var(--pageViewPad);
+  left: var(--pageViewPad);
   bottom: 0;
 }
 .pageView__imgBox9 {
-  right: 0.1rem;
+  left: 0.1rem;
   bottom: 0.1rem;
-  width: 34.1rem;
-  height: 7.3rem;
-  padding-top: 7.3rem;
+  width: 73.8rem;
+  height: 15.1rem;
+  padding-top: 15.1rem;
   background-image: url("../images/pageView__img9.png");
 }
 .help__btnClosed {

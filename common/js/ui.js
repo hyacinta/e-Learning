@@ -201,13 +201,13 @@ const controllerUI = (type) => {
   <div class="controller__videoTime vrtCenter">
     <p class="videoTime__total vrtCenter ${page ? "disabled" : ""}">
       <span class="a11yHidden">영상 전체 시간</span>
-      <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
-      <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
+      <span class="videoTime__min">00</span><span class="a11yHidden">분</span>
+      <span class="videoTime__sec">00</span><span class="a11yHidden">초</span>
     </p>
     <p class="videoTime__current vrtCenter ${page ? "disabled" : ""}">
       <span class="a11yHidden">현재 재생 시간</span>
-      <span class="videoTime__min">14</span><span class="a11yHidden">분</span>
-      <span class="videoTime__sec">54</span><span class="a11yHidden">초</span>
+      <span class="videoTime__min">00</span><span class="a11yHidden">분</span>
+      <span class="videoTime__sec">00</span><span class="a11yHidden">초</span>
     </p>
     <div class="videoTime__progress progress ${page ? "disabled" : ""}">
       <div class="progress__bar"></div>

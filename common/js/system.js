@@ -178,12 +178,17 @@ const setHelp = (video) => {
   $(".wrap").append(helpUI());
   setNavList(currentHelpPage);
   setHelpContent();
-  video.pause();
+  if (pageInfo[currentPage - 1].type !== "page") {
+    video.pause();
+  }
 
   // 동작
   $(".help__btnClosed").on("click", function () {
     $(".help").remove();
-    video.play();
+
+    if (pageInfo[currentPage - 1].type !== "page") {
+      video.play();
+    }
   });
 };
 const setNavList = (currentHelp) => {
@@ -200,17 +205,11 @@ const setNavList = (currentHelp) => {
 const setHelpContent = () => {
   switch (helpInfo[currentHelpPage - 1].type) {
     case "pageView":
-      setPageView();
+      $(".help__contents").html(pageViewUI());
       break;
 
     default:
-      setKeyControll();
+      $(".help__contents").html(keyControlsUI());
       break;
   }
-};
-const setKeyControll = () => {
-  $(".help__contents").html(keyControlsUI());
-};
-const setPageView = () => {
-  $(".help__contents").html(pageViewUI());
 };
