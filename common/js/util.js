@@ -62,12 +62,7 @@ const checkDevice = () => {
 };
 
 // 영상 URL 만들기
-const makeVideoURL = (device, groupCode) =>
-  `//mp4.teacherville.co.kr/teacherville/1000879/${
-    device === "m" ? "m/" : ""
-  }${iToStr(currentChapter)}_${iToStr(currentPage)}.mp4`;
-
-const makeVideoURL2 = () =>
+const makeVideoURL = () =>
   `../common/mp4/${iToStr(currentChapter)}_${iToStr(currentPage)}.mp4`;
 
 // 현재 차시, 페이지 확인
