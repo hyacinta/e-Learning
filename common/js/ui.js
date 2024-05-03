@@ -1,4 +1,7 @@
-const headerUI = ({ id, title }) => `<header class="header vrtCenter">
+const headerUI = ({
+  id,
+  title,
+}) => `<header class="header vrtCenter" tabindex="0">
 <h1 class="header__course">${course}</h1>
 <h2 class="header__lessonTitle vrtCenter">
   <span class="lessonTitle__number">${id}</span>
@@ -7,7 +10,8 @@ const headerUI = ({ id, title }) => `<header class="header vrtCenter">
 </h2>
 </header>`;
 
-const contentsUI = () => `<main class="contents pos--center"></main>`;
+const contentsUI = () =>
+  `<main class="contents pos--center" tabindex="0"></main>`;
 
 const contentsTitleUI = ({
   type,
@@ -45,7 +49,7 @@ const bookMarkListUI = (video) =>
               video.currentTime <= convertToSec(bookMarkInfo[id].synkTime)
             ? "active"
             : ""
-        }" data-synk="${id}">${id}. ${title}</button></li>`
+        }" data-synk="${id}">${id}. ${title}<span class="a11yHidden"> 소주제 보러가기</span></button></li>`
     )
     .join("");
 
@@ -71,7 +75,7 @@ const quizWrapUI = () => `<div class="quizWrap"></div>`;
 
 const quizPaperUI = (info) => {
   const { id, type, additional } = info;
-  return `<section class="quizPaper quiz${id}">
+  return `<section class="quizPaper quiz${id}" tabindex="0">
   <audio src="../common/sound/quiz.mp3" class="audio" autoplay></audio>
   <h4 class="a11yHidden">${id}번 문제</h4>
   ${questionUI(info)}
@@ -114,13 +118,13 @@ const oxUI = ({ type }) => `<ul class="quizPaper__distractor vrtCenter ${type}">
 <li class="distractor__item">
   <button class="distractor__btnSelect O" data-select="O">
     <span class="btnSelect__chip"></span>
-    <span class="a11yHidden">맞습니다.</span>
+    <span class="a11yHidden">맞다.</span>
   </button>
 </li>
 <li class="distractor__item">
   <button class="distractor__btnSelect X" data-select="X">
     <span class="btnSelect__chip"></span>
-    <span class="a11yHidden">틀립니다.</span>
+    <span class="a11yHidden">틀리다.</span>
   </button>
 </li>
 </ul>`;
@@ -135,7 +139,7 @@ const alertUI =
 const answerSheetUI = ({
   answer,
   explanation,
-}) => `<section class="quizPaper__answerSheet pos--bottom">
+}) => `<section class="quizPaper__answerSheet pos--bottom" tabindex="0" >
 <div class="answerSheet__correct vrtCenter">
   <p class="answerSheet__label">정답</p>
   <p class="correct__text">${answer}</p>
@@ -151,7 +155,7 @@ const answerSheetUI = ({
 }</button>
 </section>`;
 
-const quizResultUI = () => `<section class="quizResult vrtCenter">
+const quizResultUI = () => `<section class="quizResult vrtCenter" tabindex="0">
 <h4 class="a11yHidden">퀴즈 결과 보기</h4>
 <ol class="quizResult__list vrtCenter">
 ${myQuizResult
@@ -275,7 +279,7 @@ const rateListUI = (currentRate) => {
     )
     .join("");
 };
-const helpUI = () => `<section class="help pos--center">
+const helpUI = () => `<section class="help pos--center" tabindex="0">
 <h3 class="a11yHidden">학습도우미</h3>
 <nav class="help__nav">
 <ul class="nav__list"></ul>

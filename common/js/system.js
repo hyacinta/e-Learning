@@ -86,11 +86,21 @@ const setVideoPage = (type) => {
 
     if (pageType === "video-i" && currentTime >= introSkipTime) {
       $(".videoPage__btnSkip").remove();
+    } else if (
+      pageType === "video-i" &&
+      !$(".videoPage__btnSkip").length &&
+      currentTime <= introSkipTime
+    ) {
+      setSkipBtn(video);
     }
 
     if (pageType === "video-o" && currentTime >= outroTime) {
       $(".videoPage__outro").remove("");
-    } else if (pageType === "video-o" && currentTime <= outroTime) {
+    } else if (
+      pageType === "video-o" &&
+      !$(".videoPage__outro").length &&
+      currentTime <= outroTime
+    ) {
       setOutroBtn();
     }
   });
