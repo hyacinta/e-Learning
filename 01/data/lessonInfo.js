@@ -7,8 +7,8 @@ const bookMarkInfo = [
 // 퀴즈 정보 및 설정
 const initQuizChance = 2;
 let quizChance = initQuizChance;
-let currentQuizNumber = 1;
-let myQuizResultArr = [];
+let currentQuiz = 1;
+let myQuizResult = [];
 
 const quizInfo = [
   {

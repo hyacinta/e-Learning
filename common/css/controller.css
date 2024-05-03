@@ -156,6 +156,7 @@
   background-image: url("../images/btn__rate--hover.png");
 }
 .controller__btnRateOpen, .controller__btnRateOpen:disabled {
+  width: 6.9rem;
   padding: 0 1rem 0 3rem;
   color: var(--white);
   background-image: url("../images/btn__rate.png");
@@ -204,12 +205,13 @@
   display: inline-block;
   width: 2.4rem;
 }
-.controller__btnMovePrev {
-  order: -1;
-  background-image: url("../images/btn__movePrev.png");
-}
+
 .controller__btnMovePrev:hover {
   background-image: url("../images/btn__movePrev--hover.png");
+}
+.controller__btnMovePrev, .controller__btnMovePrev:disabled {
+  order: -1;
+  background-image: url("../images/btn__movePrev.png");
 }
 .controller__btnMovePrev .controller__bubble,
 .controller__btnMoveNext .controller__bubble {
@@ -225,11 +227,11 @@
   margin: 0 1rem;
   background-color: var(--whiteOp2);
 }
-.controller__btnMoveNext {
-  background-image: url("../images/btn__moveNext.png");
-}
 .controller__btnMoveNext:hover {
   background-image: url("../images/btn__moveNext--hover.png");
+}
+.controller__btnMoveNext, .controller__btnMoveNext:disabled {
+  background-image: url("../images/btn__moveNext.png");
 }
 .controller__btnMoveNext .controller__bubble {
   left: unset;

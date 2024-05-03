@@ -61,7 +61,7 @@ ${
 }
 ${
   useOutroPrint
-    ? `<button type="button" class="videoPage__btnPrint vrtCenter" title="${currentChapter}차시 학습자료">PRINT</button>`
+    ? `<button type="button" class="videoPage__btnPrint vrtCenter" title="${currentChapter}차시 학습자료" data-print="${currentChapter}">PRINT</button>`
     : ""
 }
 </div>`;
@@ -153,7 +153,7 @@ const answerSheetUI = ({
 const quizResultUI = () => `<section class="quizResult vrtCenter">
 <h4 class="a11yHidden">퀴즈 결과 보기</h4>
 <ol class="quizResult__list vrtCenter">
-${myQuizResultArr
+${myQuizResult
   .map(
     (item, idx) => `<li class="quizResult__item ${item}">
 <p class="quizResult__quizNumber">${idx + 1}번 문제</p>
@@ -253,8 +253,12 @@ const controllerUI = (type) => {
     <p class="movePage__current"><span class="a11yHidden">현재</span><span class="movePage__page">${iToStr(
       currentPage
     )}</span><span class="a11yHidden">페이지</span></p>
-    <button type="button" class="controller__btnMovePrev"><span class="controller__bubble">이전 페이지로 이동하기</span></button>
-    <button type="button" class="controller__btnMoveNext"><span class="controller__bubble">다음 페이지로 이동하기</span></button>
+    <button type="button" class="controller__btnMovePrev" ${
+      currentPage === 1 ? "disabled" : ""
+    }><span class="controller__bubble">이전 페이지로 이동하기</span></button>
+    <button type="button" class="controller__btnMoveNext" ${
+      currentPage === totalPage ? "disabled" : ""
+    }><span class="controller__bubble">다음 페이지로 이동하기</span></button>
   </div>
   </section>`;
 };
@@ -332,3 +336,9 @@ const pageViewUI = () => `<div class="help__contents vrtCenter">
     </div>
   </section>
 </div>`;
+
+// print
+const printFrame = (target) =>
+  `<iframe id="print_win" name="print_win" src="../${iToStr(
+    target
+  )}/print.html" width="0" height="0" scrolling="no" noresize frameborder="0" style="position: absolute; top: 1200px; left: 0; vislbility: hidden"></iframe>`;

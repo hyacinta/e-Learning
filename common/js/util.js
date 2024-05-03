@@ -26,6 +26,12 @@ const falseEffect = () => {
   falseSound.play();
 };
 
+// 1자리 숫자 2자리(문자열)로 변경
+const iToStr = (num) => (num < 10 ? "0" + num : num);
+
+// % 계산
+const getPerc = (numerator, denominator) => (numerator * 100) / denominator;
+
 // 현재 디바이스 확인
 const checkDevice = () => {
   const userAgent = navigator.userAgent;
@@ -48,9 +54,6 @@ const getCurrentURL = (target) => {
     ? Number(url[url.length - 2])
     : Number(url[url.length - 1].split(".")[0]);
 };
-
-// 1자리 숫자 2자리(문자열)로 변경
-const iToStr = (num) => (num < 10 ? "0" + num : num);
 
 // 시간 형식 변경
 const convertToMin = (playTime) => {
@@ -109,6 +112,40 @@ const isVideoState = (video, target, time) => {
     $(`.videoTime__${target} .videoTime__min`).text(convertToMinArr(time)[0]);
     $(`.videoTime__${target} .videoTime__sec`).text(convertToMinArr(time)[1]);
   }
+  $(".controller__btnPlay .controller__bubble").html(
+    isVideoPlay ? "일시정지" : "재생하기"
+  );
+};
+
+// progress 클릭 위치 구하기 (%)
+const getProgressPosition = (targetBlock, e) => {
+  const movePoint = e.pageX - targetBlock.offset().left;
+  const fullWidth = targetBlock.width();
+  const calc = getPerc(movePoint, fullWidth);
+  return calc > 100 ? 100 : calc < 0 ? 0 : calc;
+};
+
+// progressBar update
+const updateProgress = (targetBlock, perc) => {
+  targetBlock.css("width", perc + "%");
+};
+
+// progress 영상 제어
+const videoProgressEvent = (video, targetProgress, e) => {
+  const duration = video.duration;
+  const movePositionPerc = getProgressPosition(targetProgress, e);
+  updateProgress($(".videoTime__progress .progress__bar"), movePositionPerc);
+  video.currentTime = (duration * movePositionPerc) / 100;
+};
+
+// progress 음량 제어
+const volumeProgressEvent = (video, targetProgress, e) => {
+  const movePositionPerc = getProgressPosition(targetProgress, e);
+  updateProgress($(".volume__progress .progress__bar"), movePositionPerc);
+  video.muted = movePositionPerc ? false : true;
+  video.volume = movePositionPerc ? movePositionPerc / 100 : 0;
+  setCookie("customVolume", video.volume, 30);
+  $(".controller__btnVolume").toggleClass("mute", video.muted);
 };
 
 // 쿠키 저장
@@ -119,8 +156,16 @@ const setCookie = (cname, cvalue, exdays) => {
   document.cookie = cname + "=" + cvalue + "; " + expires;
 };
 
-// 쿠키값 가져오기
+// 쿠키 가져오기
 const getCookie = (key) => {
   key = new RegExp(key + "=([^;]*)"); // 쿠키들을 세미콘론으로 구분하는 정규표현식 정의
   return key.test(document.cookie) ? unescape(RegExp.$1) : false; // 인자로 받은 키에 해당하는 키가 있으면 값을 반환
+};
+
+// print
+const summary_print = (target) => {
+  $(".print").html(printFrame(target));
+  print_win.focus();
+  print_win.print();
+  print_win.blur();
 };

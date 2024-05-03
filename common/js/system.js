@@ -9,6 +9,7 @@ const rateList = ["0.9", "1.0", "1.2", "1.5", "2.0"];
 
 // 동작 상태 설정
 let isVideoPlay = device !== "m" ? true : false;
+let isProgressDraggable = false;
 
 // 초기화면 불러오기
 $(document).ready(() => {
@@ -59,20 +60,46 @@ const setVideoPage = (type) => {
   video.on("loadedmetadata", () => {
     isVideoState(video[0], "total", video[0].duration);
 
-    video[0].volume = getCookie("customVolume")
-      ? getCookie("customVolume")
-      : initVolume;
     video[0].playbackRate = getCookie("customRate")
       ? getCookie("customRate")
       : initRate;
+
+    video[0].volume = getCookie("customVolume")
+      ? getCookie("customVolume")
+      : initVolume;
+    updateProgress(
+      $(".volume__progress .progress__bar"),
+      (getCookie("customVolume") ? getCookie("customVolume") : initVolume) * 100
+    );
   });
+
   video.on("timeupdate", () => {
-    isVideoState(video[0], "current", video[0].currentTime);
+    const totalTime = video[0].duration;
+    const currentTime = video[0].currentTime;
+    const outroTime = totalTime - outroSkipTime;
+    const pageType = pageInfo[currentPage - 1].subType;
+    const videoPerc = getPerc(currentTime, totalTime);
+
+    isVideoState(video[0], "current", currentTime);
+
+    updateProgress($(".videoTime__progress .progress__bar"), videoPerc);
+
+    if (pageType === "video-i" && currentTime >= introSkipTime) {
+      $(".videoPage__btnSkip").remove();
+    }
+
+    if (pageType === "video-o" && currentTime >= outroTime) {
+      $(".videoPage__outro").remove("");
+    } else if (pageType === "video-o" && currentTime <= outroTime) {
+      setOutroBtn();
+    }
   });
+
   video.on("ended", () => {
     isVideoState(video[0]);
   });
 };
+
 const setSkipBtn = (video) => {
   $(".videoPage").append(skipUI());
 
@@ -82,6 +109,7 @@ const setSkipBtn = (video) => {
     $(".videoPage__btnSkip").remove();
   });
 };
+
 const setBookMark = (video) => {
   $(".videoPage").append(bookMarkUI());
 
@@ -105,21 +133,19 @@ const setBookMarkList = (video) => {
     );
   });
 };
+
 const setOutroBtn = () => {
   $(".videoPage").append(outroUI());
 
   // 동작
-  $(".videoPage__btnDown").on("click", function () {
-    console.log("outro down");
-  });
   $(".videoPage__btnPrint").on("click", function () {
-    console.log("outro print");
+    summary_print($(this).attr("data-print"));
   });
 };
 
 const setQuiz = (type) => {
   $(".contents").append(quizWrapUI());
-  setQuizPaper(quizInfo[currentQuizNumber - 1]);
+  setQuizPaper(quizInfo[currentQuiz - 1]);
 
   const video = $(".audio");
   setController(video, type);
@@ -131,18 +157,18 @@ const setQuizPaper = (info) => {
 
   // 동작
   $(".answerSheet__btnNextStep").on("click", function () {
-    currentQuizNumber += 1;
+    currentQuiz += 1;
 
-    currentQuizNumber > quizInfo.length
+    currentQuiz > quizInfo.length
       ? setQuizResult()
-      : setQuizPaper(quizInfo[currentQuizNumber - 1]);
+      : setQuizPaper(quizInfo[currentQuiz - 1]);
   });
 };
 const setQuizResult = () => {
   $(".quizWrap").html(quizResultUI());
 
   $(".quizResult__btnRetry").on("click", function () {
-    currentQuizNumber = 1;
-    setQuizPaper(quizInfo[currentQuizNumber - 1]);
+    currentQuiz = 1;
+    setQuizPaper(quizInfo[currentQuiz - 1]);
   });
 };
