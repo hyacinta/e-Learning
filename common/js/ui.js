@@ -22,7 +22,7 @@ ${exp.length ? `<p class="title__exp">${exp}</p>` : ""}
 
 const videoPageUI = () => `<section class="videoPage">
 <video class="video" autoplay>
-    <source src="//mp4.teacherville.co.kr/teacherville/1000879/01_01.mp4" type="video/mp4">
+    <source src="${videoURL}" type="video/mp4">
   </video>
 </section>`;
 

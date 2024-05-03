@@ -3,6 +3,7 @@ const device = checkDevice();
 const currentChapter = getCurrentURL("chapter");
 let currentPage = getCurrentURL("page");
 const totalPage = pageInfo.length;
+const videoURL = makeVideoURL();
 const initVolume = 0.7;
 const initRate = "1.0";
 const rateList = ["0.9", "1.0", "1.2", "1.5", "2.0"];

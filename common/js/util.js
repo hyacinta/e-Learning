@@ -61,6 +61,10 @@ const checkDevice = () => {
   return mobileRegex.some((mobile) => userAgent.match(mobile)) ? "m" : "p";
 };
 
+// 영상 URL 만들기
+const makeVideoURL = () =>
+  `../common/mp4/${iToStr(currentChapter)}_${iToStr(currentPage)}.mp4`;
+
 // 현재 차시, 페이지 확인
 const getCurrentURL = (target) => {
   const url = this.location.href.split("/");
