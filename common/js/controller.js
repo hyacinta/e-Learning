@@ -12,7 +12,12 @@ const setController = (video, type) => {
     movePage(Number($(this).attr("data-target")));
   });
   $(".controller__btnHelp").on("click", function () {
-    console.log("help");
+    if ($(".help").length) {
+      $(".help").remove();
+      video.play();
+      return;
+    }
+    setHelp(video);
   });
   $(".controller__btnPlay").on("click", function () {
     operateVideo(video);

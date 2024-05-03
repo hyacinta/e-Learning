@@ -565,14 +565,12 @@ body {
 
 /* 학습도우미 */
 .help {
-  display: none;
+  display: flex;
   flex-direction: column;
   width: var(--width);
   height: var(--height);
   background-color: var(--white);
-}
-.help.open {
-  display: flex;
+  z-index: 9999;
 }
 .help__nav {
   padding: 4rem 1.6rem 0;
@@ -603,7 +601,6 @@ body {
   background-repeat: no-repeat;
 }
 .keyControls {
-  display: none;
   width: 102.7rem;
   height: 34.7rem;
   padding-top: 34.7rem;

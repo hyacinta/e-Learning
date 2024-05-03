@@ -272,21 +272,30 @@ const rateListUI = (currentRate) => {
     )
     .join("");
 };
-const helpUI = () => `<section class="help pos--center open">
+const helpUI = () => `<section class="help pos--center">
 <h3 class="a11yHidden">학습도우미</h3>
-<nav class="help__nav"></nav>
+<nav class="help__nav">
+<ul class="nav__list"></ul>
+</nav>
+<div class="help__contents vrtCenter"></div>
 <button type="button" class="help__btnClosed" title="학습도우미">닫기</button>
 </section>`;
-const helpNavUI = () => `<ul class="nav__list">
-<li class="nav__item">
-  <button type="button" id="nav1" class="nav__btnChangeContents active" data-help="keyControls" tabindex="0" role="tab" aria-selected="true" aria-controls="helpContent1" disabled>키보드 제어</button>
-</li>
-<li class="nav__item">
-  <button type="button" id="nav2" class="nav__btnChangeContents" data-help="pageView" tabindex="0" role="tab" aria-selected="false" aria-controls="helpContent2">화면 안내</button>
-</li>
-</ul>`;
-const keyControlsUI = () => `<div class="help__contents vrtCenter">
-  <section id="helpContent1" class="contents__innerBox keyControls" role="tabpanel" aria-labelledby="nav1">
+const helpNavListUI = (currentHelp) =>
+  helpInfo
+    .map(
+      ({ id, type, title }) => `<li class="nav__item">
+<button type="button" id="nav${id}" class="nav__btnChangeContents ${
+        Number(currentHelp) === id ? "active" : ""
+      }" data-help="${id}" tabindex="0" role="tab" aria-selected="${
+        Number(currentHelp) === id ? true : false
+      }" aria-controls="${type}" ${
+        Number(currentHelp) === id ? "disabled" : ""
+      }>${title}</button>
+</li>`
+    )
+    .join("");
+const keyControlsUI =
+  () => `<section id="keyControls" class="contents__innerBox keyControls" role="tabpanel" aria-labelledby="nav1">
     <kbd>SPACE BAR</kbd><p>영상 일시정지 / 재생하기</p>
     <kbd>PAGE UP</kbd><p>이전 페이지 이동하기</p>
     <kbd>PAGE DOWN</kbd><p>다음 페이지 이동하기</p>
@@ -294,48 +303,21 @@ const keyControlsUI = () => `<div class="help__contents vrtCenter">
     <kbd>오른쪽 화살표</kbd><p>영상 10초 뒤로 이동하기</p>
     <kbd>위 화살표</kbd><p>음량 키우기</p>
     <kbd>아래 화살표</kbd><p>음량 줄이기</p>
-  </section>
-</div>`;
-const pageViewUI = () => `<div class="help__contents vrtCenter">
-  <section id="helpContent2" class="contents__innerBox pageView" role="tabpanel" aria-labelledby="nav2">
-    <button type="button" class="pageView__btnNumber1">1</button>
-    <div class="pageView__imgBox1">
-      <div class="pageView__bubble">차시명 입니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber2">2</button>
-    <div class="pageView__imgBox2">
-      <div class="pageView__bubble">과정명 입니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber3">3</button>
-    <div class="pageView__imgBox3">
-      <div class="pageView__bubble">북마크 버튼은 해당 소주제로 이동이 가능합니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber4">4</button>
-    <div class="pageView__imgBox4">
-      <div class="pageView__bubble">SKIP 버튼은 오프닝 영상을 건너 뛸 수 있습니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber5">5</button>
-    <div class="pageView__imgBox5">
-      <div class="pageView__bubble">INDEX 버튼은 학습 구조를 확인하고, 해당 페이지로 이동할 수 있습니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber6">6</button>
-    <div class="pageView__imgBox6">
-      <div class="pageView__bubble">학습도우미 버튼은 키보드 제어 방법 및 학습 화면의 구성에 대해 확인할 수 있습니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber7">7</button>
-    <div class="pageView__imgBox7">
-      <div class="pageView__bubble">재생/일시정지, 다시보기, 음량 조절, 배속 조절이 가능한 버튼으로 학습 영상을 제어할 수 있습니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber8">8</button>
-    <div class="pageView__imgBox8">
-      <div class="pageView__bubble">전체화면 버튼은 영상을 전체 화면으로 볼 수 있습니다.</div>
-    </div>
-    <button type="button" class="pageView__btnNumber9">9</button>
-    <div class="pageView__imgBox9">
-      <div class="pageView__bubble">전체 페이지와 현재 페이지를 표시하고, 이전 페이지 혹은 다음 페이지로 이동할 수 있습니다.</div>
-    </div>
-  </section>
-</div>`;
+  </section>`;
+const pageViewUI =
+  () => `<section id="pageView" class="contents__innerBox pageView" role="tabpanel" aria-labelledby="nav2">
+${pageViewInfo
+  .map(
+    ({
+      id,
+      exp,
+    }) => `<button type="button" class="pageView__btnNumber${id}">${id}</button>
+<div class="pageView__imgBox${id}">
+  <div class="pageView__bubble">${exp}</div>
+</div>`
+  )
+  .join("")}
+  </section>`;
 
 // print
 const printFrame = (target) =>

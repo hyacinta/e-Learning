@@ -10,6 +10,7 @@ const rateList = ["0.9", "1.0", "1.2", "1.5", "2.0"];
 // 동작 상태 설정
 let isVideoPlay = device !== "m" ? true : false;
 let isProgressDraggable = false;
+let isPopupOpen = false;
 
 // 초기화면 불러오기
 $(document).ready(() => {
@@ -171,4 +172,45 @@ const setQuizResult = () => {
     currentQuiz = 1;
     setQuizPaper(quizInfo[currentQuiz - 1]);
   });
+};
+
+const setHelp = (video) => {
+  $(".wrap").append(helpUI());
+  setNavList(currentHelpPage);
+  setHelpContent();
+  video.pause();
+
+  // 동작
+  $(".help__btnClosed").on("click", function () {
+    $(".help").remove();
+    video.play();
+  });
+};
+const setNavList = (currentHelp) => {
+  $(".nav__list").html(helpNavListUI(currentHelp));
+
+  // 동작
+  $(".nav__btnChangeContents").on("click", function () {
+    currentHelpPage = $(this).attr("data-help");
+    setNavList(currentHelpPage);
+
+    setHelpContent();
+  });
+};
+const setHelpContent = () => {
+  switch (helpInfo[currentHelpPage - 1].type) {
+    case "pageView":
+      setPageView();
+      break;
+
+    default:
+      setKeyControll();
+      break;
+  }
+};
+const setKeyControll = () => {
+  $(".help__contents").html(keyControlsUI());
+};
+const setPageView = () => {
+  $(".help__contents").html(pageViewUI());
 };

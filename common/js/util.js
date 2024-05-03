@@ -32,6 +32,20 @@ const iToStr = (num) => (num < 10 ? "0" + num : num);
 // % 계산
 const getPerc = (numerator, denominator) => (numerator * 100) / denominator;
 
+// 쿠키 저장
+const setCookie = (cname, cvalue, exdays) => {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  const expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+};
+
+// 쿠키 가져오기
+const getCookie = (key) => {
+  key = new RegExp(key + "=([^;]*)"); // 쿠키들을 세미콘론으로 구분하는 정규표현식 정의
+  return key.test(document.cookie) ? unescape(RegExp.$1) : false; // 인자로 받은 키에 해당하는 키가 있으면 값을 반환
+};
+
 // 현재 디바이스 확인
 const checkDevice = () => {
   const userAgent = navigator.userAgent;
@@ -146,20 +160,6 @@ const volumeProgressEvent = (video, targetProgress, e) => {
   video.volume = movePositionPerc ? movePositionPerc / 100 : 0;
   setCookie("customVolume", video.volume, 30);
   $(".controller__btnVolume").toggleClass("mute", video.muted);
-};
-
-// 쿠키 저장
-const setCookie = (cname, cvalue, exdays) => {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  const expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + "; " + expires;
-};
-
-// 쿠키 가져오기
-const getCookie = (key) => {
-  key = new RegExp(key + "=([^;]*)"); // 쿠키들을 세미콘론으로 구분하는 정규표현식 정의
-  return key.test(document.cookie) ? unescape(RegExp.$1) : false; // 인자로 받은 키에 해당하는 키가 있으면 값을 반환
 };
 
 // print
