@@ -27,9 +27,7 @@ const setContents = (info) => {
   const { type, subType } = info;
 
   $(".wrap").append(contentsUI());
-  if (useContentsTitle) {
-    $(".contents").append(contentsTitleUI(info));
-  }
+  $(".contents").append(contentsTitleUI(info));
 
   if (type === "videoPage") {
     setVideoPage(subType);
@@ -149,27 +147,46 @@ const setQuiz = (type) => {
   setQuizPaper(quizInfo[currentQuiz - 1]);
 
   const video = $(".audio");
+  video[0].volume = 0.5;
   setController(video, type);
 };
 const setQuizPaper = (info) => {
   $(".quizWrap").html(quizPaperUI(info));
 
-  // $(".quizPaper").append(answerSheetUI(info));
+  quizChance = info.type === "ox" ? 1 : quizChance;
+
+  // 동작
+  $(".distractor__btnSelect").on("click", function () {
+    quizSolve(info, $(this).attr("data-select"), $(this));
+  });
+  $(".distractor__btnConfirm").on("click", function () {
+    quizSolve(info, $(".distractor__input").val(), $(this));
+  });
+};
+const setAnswerSheet = (info) => {
+  $(".quizPaper").append(answerSheetUI(info));
 
   // 동작
   $(".answerSheet__btnNextStep").on("click", function () {
     currentQuiz += 1;
+    quizChance = initQuizChance;
 
     currentQuiz > quizInfo.length
       ? setQuizResult()
       : setQuizPaper(quizInfo[currentQuiz - 1]);
   });
 };
+
+const setAlertMessage = () => {
+  $(".quizWrap").append(alertUI());
+};
 const setQuizResult = () => {
   $(".quizWrap").html(quizResultUI());
+  $(".title__exp").remove();
 
   $(".quizResult__btnRetry").on("click", function () {
     currentQuiz = 1;
+    myQuizResult = [];
     setQuizPaper(quizInfo[currentQuiz - 1]);
   });
 };

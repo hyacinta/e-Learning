@@ -147,7 +147,7 @@ input::placeholder {
 }
 
 /* number box */
-.sa .distractor__number, [class*=pageView__btnNumber] {
+.sa :disabled .distractor__number, .sa .distractor__number, [class*=pageView__btnNumber] {
   width: 2.8rem;
   height: 2.8rem;
   padding-top: 0.5rem;

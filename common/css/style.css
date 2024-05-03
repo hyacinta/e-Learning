@@ -372,6 +372,7 @@ body {
   color: var(--white);
   background-color: var(--main);
 }
+
 /* OX */
 .ox {
   justify-content: center;
@@ -429,10 +430,22 @@ body {
 }
 /* alert message */
 .quizPaper__alertMessage {
-  display: none;
   justify-content: center;
   background-color: var(--dimd);
   backdrop-filter: var(--blur);
+  animation-name: alertPop;
+  animation-delay: 1s;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+@keyframes alertPop {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    z-index: -100;
+  }
 }
 .alertMessage__textBox {
   position: relative;

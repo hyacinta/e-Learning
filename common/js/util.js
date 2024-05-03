@@ -162,6 +162,50 @@ const volumeProgressEvent = (video, targetProgress, e) => {
   $(".controller__btnVolume").toggleClass("mute", video.muted);
 };
 
+const checkAnswer = (type, correctAnswer, myAnswer) => {
+  if (type !== "ju") {
+    return correctAnswer === myAnswer ? "correct" : "wrong";
+  }
+  console.log("귤 확인");
+  return correctAnswer.includes(myAnswer) ? "correct" : "wrong";
+};
+
+// 퀴즈 풀이
+const quizSolve = (info, myAnswer, thisBtn) => {
+  const { type, answer } = info;
+
+  $(".quizPaper__alertMessage").remove();
+  if (quizChance <= 0) return;
+  quizChance -= 1;
+
+  const currentResult = checkAnswer(
+    type,
+    answer,
+    type === "sa" ? Number(myAnswer) : myAnswer
+  );
+
+  if (currentResult === "correct" || !quizChance) {
+    myQuizResult.push(currentResult);
+    $(".question__resultMark").addClass(currentResult);
+
+    if (type === "sa") {
+      $(".quizPaper__distractor")
+        .children(":eq(" + (Number(answer) - 1) + ")")
+        .children()
+        .addClass("correctAnswer");
+    }
+    if (type !== "ju") {
+      thisBtn.addClass("mySelect");
+      $(".distractor__btnSelect").attr("disabled", true);
+    }
+    setAnswerSheet(info);
+    return;
+  }
+  setAlertMessage();
+  if (type === "ju") {
+    $(".distractor__input").val("");
+  }
+};
 // print
 const summary_print = (target) => {
   $(".print").html(printFrame(target));

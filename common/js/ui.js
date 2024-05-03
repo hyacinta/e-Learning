@@ -10,10 +10,11 @@ const headerUI = ({ id, title }) => `<header class="header vrtCenter">
 const contentsUI = () => `<main class="contents pos--center"></main>`;
 
 const contentsTitleUI = ({
+  type,
   title,
   exp,
 }) => `<div class="contents__title vrtCenter ${
-  useContentsTitle ? "" : "a11yHidden"
+  useContentsTitle || type === "page" ? "" : "a11yHidden"
 }">
 <h3 class="title__label">${title}</h3>
 ${exp.length ? `<p class="title__exp">${exp}</p>` : ""}
@@ -144,7 +145,7 @@ const answerSheetUI = ({
   <p class="exp__text">${explanation}</p>
 </div>
 <button type="button" class="answerSheet__btnNextStep">${
-  currentQuizNumber >= quizInfo.length
+  currentQuiz >= quizInfo.length
     ? "결과보기"
     : `다음 문제<span class="a11yHidden">풀기</span>`
 }</button>
@@ -155,10 +156,12 @@ const quizResultUI = () => `<section class="quizResult vrtCenter">
 <ol class="quizResult__list vrtCenter">
 ${myQuizResult
   .map(
-    (item, idx) => `<li class="quizResult__item ${item}">
+    (item, idx) => `<li class="quizResult__item ${
+      item === "correct" ? "O" : "X"
+    }">
 <p class="quizResult__quizNumber">${idx + 1}번 문제</p>
 <p class="quizResult__resultBox">${
-      item === "O" ? "맞았습니다." : "틀렸습니다."
+      item === "correct" ? "맞았습니다." : "틀렸습니다."
     }</p>
 </li>`
   )
